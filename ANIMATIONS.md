@@ -1,9 +1,47 @@
 # Adding scroll animation to Crowns Sphere
 
-A build order for the motion layer. Nothing here is installed yet — the site
-currently ships with a hand-rolled `IntersectionObserver` reveal
-(`components/reveal.tsx`) and CSS keyframes, which is deliberate: it costs 0 KB
-and gives you a clean base to build on.
+A build order for the motion layer.
+
+## Already built (no dependencies)
+
+| What | Where | How |
+| --- | --- | --- |
+| Loading splash — rays blink outward, shine sweeps across, wordmark draws in | `components/preloader.tsx` | CSS keyframes; the shine is an SVG rect clipped to the ray shapes |
+| Scroll reveal | `components/reveal.tsx` | IntersectionObserver + CSS, with a scroll-listener fallback |
+| Drifting star field with scroll parallax | `components/star-field.tsx` | One canvas, one rAF loop; nearer stars move further as you scroll |
+| Hero + page-header entrance | `.rise-in` / `.drop-in` in globals.css | Staggered via `--enter-stagger` |
+| Scroll progress bar | `components/scroll-progress.tsx` | Writes `transform` directly, coalesced into one frame |
+| Aurat Card phone mockup | `components/phone-mockup.tsx` | Pure CSS/SVG — floats, the card shimmers, tiles stagger in |
+| Pulsing hero glow, marquee strips | globals.css | CSS keyframes |
+
+### Two things to know before editing the entrance animations
+
+**`--enter-delay` is the preloader handshake.** On first load it is `1.2s`, so
+the hero waits for the splash. When the preloader finishes it sets
+`data-loaded` on `<html>`, which drops it to `0ms` — otherwise navigating back
+to a page client-side would leave it blank for a second waiting on a splash
+that will never appear again. Per-element stagger goes in `--enter-stagger`.
+
+**Entrance animations use `animation-fill-mode: both`.** That means the element
+holds its hidden start state during the delay. Never put `opacity: 0` in the
+class itself — if animations don't run, the content must still be visible.
+The same reason the reduced-motion block zeroes `animation-delay` as well as
+duration.
+
+All of it is 0 KB of third-party JavaScript and every piece respects
+`prefers-reduced-motion`. The star field paints one frame immediately rather
+than waiting on rAF, so it is never blank.
+
+**Tuning the star field:** `<StarField density={1.15} parallax={0.28} />` —
+`density` multiplies the star count, `parallax` is how far the nearest stars
+travel over a viewport of scrolling. It is currently in the homepage hero, every
+inner-page header (`PageHero` in `components/ui.tsx`), and the Aurat Card panel
+on the homepage.
+
+## What still needs a library
+
+The phases below are for the heavier work — pinned sections, scrubbed
+timelines, and the illustrated animation the reference site uses.
 
 ---
 

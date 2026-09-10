@@ -1,6 +1,8 @@
 ﻿import Link from "next/link";
 import type { ComponentProps, ReactNode } from "react";
 
+import { StarField } from "./star-field";
+
 /* ---------------------------------------------------------------------------
    Shared building blocks. Every page is assembled from these, so a change
    here restyles the whole site consistently.
@@ -159,11 +161,12 @@ export function ArrowIcon({ className }: { className?: string }) {
 type ButtonVariant = "primary" | "secondary" | "ghost" | "light";
 
 const buttonVariant: Record<ButtonVariant, string> = {
-  primary: "bg-royal text-white hover:bg-royal-2",
+  primary:
+    "bg-royal text-white hover:bg-royal-2 hover:shadow-[0_10px_34px_-10px_var(--color-royal)] hover:-translate-y-0.5",
   secondary:
-    "border border-white/15 bg-white/[0.04] text-white hover:border-white/30 hover:bg-white/[0.08]",
+    "border border-white/15 bg-white/[0.04] text-white hover:border-white/30 hover:bg-white/[0.08] hover:-translate-y-0.5",
   ghost: "text-white hover:text-royal",
-  light: "bg-ink text-white hover:bg-ink-2",
+  light: "bg-ink text-white hover:bg-ink-2 hover:-translate-y-0.5",
 };
 
 export function CtaButton({
@@ -180,7 +183,7 @@ export function CtaButton({
 } & Omit<ComponentProps<typeof Link>, "href" | "className" | "children">) {
   const external = href.startsWith("http") || href.startsWith("mailto:");
   const classes = cx(
-    "group inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-sm font-medium transition-colors duration-200",
+    "group inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-sm font-medium transition-all duration-200",
     buttonVariant[variant],
     className,
   );
@@ -491,24 +494,42 @@ export function PageHero({
 }) {
   return (
     <header className="bg-ink relative overflow-hidden pt-40 pb-20 md:pt-48 md:pb-28">
+      <StarField density={0.8} parallax={0.18} />
       {/* ambient glow */}
       <div
         aria-hidden="true"
         className="from-plum/45 pointer-events-none absolute -top-40 left-1/2 h-[520px] w-[900px] -translate-x-1/2 rounded-full bg-gradient-to-b to-transparent blur-3xl"
       />
       <Container className="relative">
-        <Eyebrow>{eyebrow}</Eyebrow>
-        <h1 className="display mt-6 max-w-4xl text-[clamp(2.5rem,6.5vw,5rem)] font-semibold">
+        <div className="rise-in" style={{ "--enter-stagger": "80ms" } as React.CSSProperties}>
+          <Eyebrow>{eyebrow}</Eyebrow>
+        </div>
+        <h1
+          className="display rise-in mt-6 max-w-4xl text-[clamp(2.5rem,6.5vw,5rem)] font-semibold"
+          style={{ "--enter-stagger": "180ms" } as React.CSSProperties}
+        >
           {title}
         </h1>
         {intro ? (
-          <p className="text-mist mt-7 max-w-2xl text-lg leading-relaxed text-pretty">
+          <p
+            className="text-mist rise-in mt-7 max-w-2xl text-lg leading-relaxed text-pretty"
+            style={{ "--enter-stagger": "290ms" } as React.CSSProperties}
+          >
             {intro}
           </p>
         ) : null}
-        {status ? <StatusBadge status={status} className="mt-8" /> : null}
+        {status ? (
+          <div className="rise-in" style={{ "--enter-stagger": "360ms" } as React.CSSProperties}>
+            <StatusBadge status={status} className="mt-8" />
+          </div>
+        ) : null}
         {actions ? (
-          <div className="mt-10 flex flex-wrap items-center gap-3">{actions}</div>
+          <div
+            className="rise-in mt-10 flex flex-wrap items-center gap-3"
+            style={{ "--enter-stagger": "430ms" } as React.CSSProperties}
+          >
+            {actions}
+          </div>
         ) : null}
         {children}
       </Container>

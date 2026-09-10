@@ -51,7 +51,17 @@ function ray(index: number) {
 
 const RAYS = Array.from({ length: SPIKES }, (_, i) => ray(i));
 
-export function LogoMark({ className }: { className?: string }) {
+export function LogoMark({
+  className,
+  /** Blink the rays in sequence — used by the preloader. */
+  animated = false,
+  /** Must be unique per instance on the page; SVG ids are global. */
+  gradientId = "cs-crown",
+}: {
+  className?: string;
+  animated?: boolean;
+  gradientId?: string;
+}) {
   return (
     <svg
       viewBox="0 0 200 108"
@@ -60,15 +70,56 @@ export function LogoMark({ className }: { className?: string }) {
       className={cx("h-7 w-[52px]", className)}
     >
       <defs>
-        <linearGradient id="cs-crown" x1="0" y1="0" x2="1" y2="1">
+        <linearGradient id={gradientId} x1="0" y1="0" x2="1" y2="1">
           <stop offset="0%" stopColor="#9c40ad" />
           <stop offset="55%" stopColor="#7b2d8e" />
           <stop offset="100%" stopColor="#6a1f7d" />
         </linearGradient>
+
+        {animated ? (
+          <>
+            {/* The shine is clipped to the rays themselves — otherwise the
+                sweep shows up as a bright rectangle over the background. */}
+            <clipPath id={`${gradientId}-clip`}>
+              {RAYS.map((points, i) => (
+                <polygon key={i} points={points} />
+              ))}
+            </clipPath>
+            <linearGradient id={`${gradientId}-shine`} x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stopColor="#ffffff" stopOpacity="0" />
+              <stop offset="50%" stopColor="#ffffff" stopOpacity="0.9" />
+              <stop offset="100%" stopColor="#ffffff" stopOpacity="0" />
+            </linearGradient>
+          </>
+        ) : null}
       </defs>
       {RAYS.map((points, i) => (
-        <polygon key={i} points={points} fill="url(#cs-crown)" />
+        <polygon
+          key={i}
+          points={points}
+          fill={`url(#${gradientId})`}
+          className={animated ? "ray-blink" : undefined}
+          // Delay runs out from the centre ray, so the pulse travels outward.
+          style={
+            animated
+              ? { animationDelay: `${Math.abs(i - (SPIKES - 1) / 2) * 110}ms` }
+              : undefined
+          }
+        />
       ))}
+
+      {animated ? (
+        <g clipPath={`url(#${gradientId}-clip)`}>
+          <rect
+            className="logo-shine-sweep"
+            x="-110"
+            y="-4"
+            width="95"
+            height="116"
+            fill={`url(#${gradientId}-shine)`}
+          />
+        </g>
+      ) : null}
     </svg>
   );
 }

@@ -80,9 +80,11 @@ export const platforms = {
       subtitle: "Your Aurat Card in your pocket.",
       body: "Access your digital membership, discover participating partners and use the growing range of Aurat Card services.",
       status: "Available — additional features in development and testing",
+      // The store links live on the phone mockup above, so these are the
+      // next steps rather than a second set of download buttons.
       links: [
-        { label: "Download on the App Store", href: "#" },
-        { label: "Get it on Google Play", href: "#" },
+        { label: "Register Now", href: "/contact?topic=Aurat%20Card" },
+        { label: "Become a Partner", href: "/partnerships" },
       ],
     },
     {

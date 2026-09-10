@@ -1,5 +1,7 @@
 ﻿import { Marquee } from "@/components/marquee";
+import { PhoneMockup } from "@/components/phone-mockup";
 import { Reveal } from "@/components/reveal";
+import { StarField } from "@/components/star-field";
 import {
   ArrowLink,
   Card,
@@ -38,22 +40,36 @@ export default function HomePage() {
       <section className="bg-ink relative overflow-hidden pt-40 pb-20 md:pt-52 md:pb-28">
         <div
           aria-hidden="true"
-          className="from-plum/55 pointer-events-none absolute -top-64 left-1/2 h-[720px] w-[1100px] -translate-x-1/2 rounded-full bg-gradient-to-b via-transparent to-transparent blur-3xl"
+          className="glow-pulse from-plum/55 pointer-events-none absolute -top-64 left-1/2 h-[720px] w-[1100px] -translate-x-1/2 rounded-full bg-gradient-to-b via-transparent to-transparent blur-3xl"
         />
+        <StarField density={1.15} parallax={0.28} />
         <div
           aria-hidden="true"
           className="grain-layer pointer-events-none absolute inset-0 opacity-[0.035] mix-blend-overlay"
         />
 
+        {/* Stagger only; the wait for the preloader comes from --enter-delay,
+            which drops to 0 once the splash has run. See globals.css. */}
         <Container className="relative">
-          <Eyebrow>{hero.eyebrow}</Eyebrow>
-          <h1 className="display mt-7 max-w-[16ch] text-[clamp(2.75rem,7.5vw,6rem)] font-semibold">
+          <div className="rise-in" style={{ "--enter-stagger": "80ms" } as React.CSSProperties}>
+            <Eyebrow>{hero.eyebrow}</Eyebrow>
+          </div>
+          <h1
+            className="display rise-in mt-7 max-w-[16ch] text-[clamp(2.75rem,7.5vw,6rem)] font-semibold"
+            style={{ "--enter-stagger": "180ms" } as React.CSSProperties}
+          >
             {hero.headline}
           </h1>
-          <p className="text-mist mt-8 max-w-2xl text-lg leading-relaxed text-pretty sm:text-xl">
+          <p
+            className="text-mist rise-in mt-8 max-w-2xl text-lg leading-relaxed text-pretty sm:text-xl"
+            style={{ "--enter-stagger": "300ms" } as React.CSSProperties}
+          >
             {hero.body}
           </p>
-          <div className="mt-11 flex flex-wrap items-center gap-3">
+          <div
+            className="rise-in mt-11 flex flex-wrap items-center gap-3"
+            style={{ "--enter-stagger": "420ms" } as React.CSSProperties}
+          >
             <CtaButton href={hero.primary.href}>{hero.primary.label}</CtaButton>
             <CtaButton href={hero.secondary.href} variant="secondary">
               {hero.secondary.label}
@@ -214,17 +230,23 @@ export default function HomePage() {
             </Reveal>
 
             <Reveal delay={140}>
-              <div className="border-ink/12 bg-ink text-white rounded-card-lg border p-9 sm:p-11">
-                <p className="text-mist text-[11px] font-medium tracking-[0.18em] uppercase">
-                  Our ambition
-                </p>
-                <p className="display mt-5 text-[clamp(2.5rem,6vw,4.5rem)] font-semibold">
-                  1 Million
-                </p>
-                <p className="text-mist mt-3 text-sm leading-relaxed">
-                  verified women across Pakistan
-                </p>
-                <ul className="border-line mt-9 grid gap-px border-t pt-px sm:grid-cols-2">
+              <div className="border-ink/12 bg-ink text-white rounded-card-lg relative overflow-hidden border p-9 sm:p-11">
+                <StarField density={0.7} parallax={0.14} />
+                <div className="relative grid gap-10 sm:grid-cols-[1fr_auto] sm:items-center">
+                  <div>
+                    <p className="text-mist text-[11px] font-medium tracking-[0.18em] uppercase">
+                      Our ambition
+                    </p>
+                    <p className="display mt-5 text-[clamp(2.25rem,5vw,3.5rem)] font-semibold">
+                      1 Million
+                    </p>
+                    <p className="text-mist mt-3 text-sm leading-relaxed">
+                      verified women across Pakistan
+                    </p>
+                  </div>
+                  <PhoneMockup width={196} className="sm:mx-0" />
+                </div>
+                <ul className="border-line relative mt-9 grid gap-px border-t pt-px sm:grid-cols-2">
                   {auratCardFeature.highlights.map((item) => (
                     <li
                       key={item}

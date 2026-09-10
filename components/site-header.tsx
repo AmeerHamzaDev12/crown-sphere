@@ -70,8 +70,9 @@ export function SiteHeader() {
         <div className="mx-auto w-full max-w-[1280px] px-4 sm:px-8">
           <nav
             aria-label="Primary"
+            style={{ "--enter-stagger": "0ms" } as React.CSSProperties}
             className={cx(
-              "flex items-center gap-2 rounded-full border p-2 transition-all duration-300",
+              "drop-in flex items-center gap-2 rounded-full border p-2 transition-all duration-300",
               scrolled
                 ? "border-line bg-ink/85 shadow-[0_18px_50px_-24px_rgba(0,0,0,0.9)] backdrop-blur-xl"
                 : "border-white/[0.07] bg-ink/60 backdrop-blur-lg",

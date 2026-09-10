@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Manrope } from "next/font/google";
 
+import { Preloader } from "@/components/preloader";
+import { ScrollProgress } from "@/components/scroll-progress";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { company } from "@/content/site";
@@ -78,6 +80,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         >
           Skip to content
         </a>
+        <Preloader />
+        <ScrollProgress />
         <SiteHeader />
         <main id="main" className="flex-1">
           {children}

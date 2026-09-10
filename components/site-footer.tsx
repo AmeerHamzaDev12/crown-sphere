@@ -100,7 +100,9 @@ export function SiteFooter() {
         aria-hidden="true"
         className="pointer-events-none select-none overflow-hidden"
       >
-        <p className="font-display text-line -mb-[0.22em] text-center text-[clamp(3.5rem,15vw,13rem)] leading-none font-semibold tracking-[-0.05em] opacity-70">
+        {/* Kept to one line and cropped tight — leading below 1 plus the
+            negative margin means it occupies about half its own font size. */}
+        <p className="font-display text-line -mb-[0.3em] text-center text-[clamp(2.25rem,11vw,7.5rem)] leading-[0.82] font-semibold tracking-[-0.06em] whitespace-nowrap opacity-60">
           CROWNS SPHERE
         </p>
       </div>

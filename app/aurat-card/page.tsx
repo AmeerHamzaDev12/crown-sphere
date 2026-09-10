@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 
+import { PhoneMockup, StoreButtons } from "@/components/phone-mockup";
 import { Reveal } from "@/components/reveal";
 import {
   ArrowLink,
@@ -153,6 +154,26 @@ export default function AuratCardPage() {
               intro={platforms.intro}
             />
           </Reveal>
+          {/* the app itself */}
+          <div className="mt-16 grid gap-12 lg:grid-cols-[auto_1fr] lg:items-center lg:gap-20">
+            <Reveal>
+              <PhoneMockup />
+            </Reveal>
+            <Reveal delay={140}>
+              <h3 className="display text-[clamp(1.75rem,3.4vw,2.75rem)] font-semibold">
+                Your Aurat Card, in your pocket
+              </h3>
+              <p className="text-mist mt-5 text-base leading-relaxed">
+                Your verified membership, a QR code partners can scan, and every
+                benefit near you — on the app and the web portal.
+              </p>
+              <StoreButtons className="mt-9" />
+              <p className="text-dim mt-5 text-xs">
+                Available — additional features in development and testing.
+              </p>
+            </Reveal>
+          </div>
+
           <div className="mt-16 grid gap-5 lg:grid-cols-2">
             {platforms.items.map((item, i) => (
               <Reveal key={item.title} delay={i * 110}>
