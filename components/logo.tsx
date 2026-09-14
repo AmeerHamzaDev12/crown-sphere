@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { cx } from "./ui";
 
@@ -62,6 +63,22 @@ export function LogoMark({
   animated?: boolean;
   gradientId?: string;
 }) {
+  // Static use gets the official artwork. The generated SVG below is only for
+  // the preloader, where each ray has to animate individually — something a
+  // flat image can't do.
+  if (!animated) {
+    return (
+      <Image
+        src="/crown.webp"
+        alt=""
+        width={64}
+        height={43}
+        priority
+        className={cx("h-7 w-[52px] object-contain", className)}
+      />
+    );
+  }
+
   return (
     <svg
       viewBox="0 0 200 108"
@@ -71,9 +88,9 @@ export function LogoMark({
     >
       <defs>
         <linearGradient id={gradientId} x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="#9c40ad" />
-          <stop offset="55%" stopColor="#7b2d8e" />
-          <stop offset="100%" stopColor="#6a1f7d" />
+          <stop offset="0%" stopColor="#9a3a9d" />
+          <stop offset="55%" stopColor="#79207c" />
+          <stop offset="100%" stopColor="#5e1761" />
         </linearGradient>
 
         {animated ? (
@@ -141,11 +158,13 @@ export function Logo({
       aria-label="Crowns Sphere — home"
     >
       <LogoMark />
-      <span className="font-display text-[15px] leading-none font-semibold tracking-[-0.02em]">
-        Crowns
-        <span className="text-mist group-hover:text-royal transition-colors">
-          {" "}
-          Sphere
+      {/* Wordmark lockup from the reference build: name over a spaced tagline */}
+      <span className="leading-tight">
+        <span className="block text-[13px] font-bold tracking-[0.07em]">
+          CROWNS SPHERE
+        </span>
+        <span className="text-mist group-hover:text-accent mt-0.5 block text-[8px] tracking-[0.22em] transition-colors">
+          BUILD. INVEST. CONNECT.
         </span>
       </span>
     </Link>

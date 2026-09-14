@@ -2,7 +2,7 @@
 
 export const hero = {
   eyebrow: "Aurat Card",
-  heading: "A Digital Platform Built to Empower Women Across Pakistan",
+  heading: "A stronger future. *For her.*",
   body: "A digital-first membership combining structured discounts, one-touch safety, subsidised healthcare, and a marketplace for women-led businesses.",
   primary: { label: "Join Now", href: "/contact?topic=Aurat%20Card" },
   secondary: { label: "Become a Partner", href: "/partnerships" },
@@ -98,6 +98,40 @@ export const platforms = {
       ],
     },
   ],
+};
+
+/**
+ * Labels for the in-app phone mockup (components/phone-mockup.tsx), taken from
+ * the live Aurat Card app screens so the mockup matches the real product.
+ */
+export const appMockup = {
+  brand: "Aurat Card",
+  brandSub: "Scan, save, and manage benefits",
+  heroKicker: "Your key to empowerment",
+  heroLines: ["Made for her.", "Made for Pakistan."],
+  heroBody:
+    "Discover savings, opportunities and experiences — before you even sign in.",
+  chooseTitle: "Choose your Aurat Card",
+  chooseSub: "Three life stages. One world of benefits.",
+  tiers: [
+    { name: "Silver", price: "PKR 5,000 / year", alt: "MYR 49 / year" },
+    { name: "Gold", price: "PKR 10,000 / year", alt: "MYR 99 / year" },
+  ],
+};
+
+/** Short explainer video for the Aurat Card page. */
+export const videoShowcase = {
+  eyebrow: "Watch",
+  heading: "Aurat Card *in ninety seconds.*",
+  body: "A short walkthrough of the membership, the app and the partner network — what it is, who it is for and how it works.",
+  /**
+   * Drop the file at public/aurat-card.mp4 (and a still at
+   * public/aurat-card-poster.jpg) and set `src` to "/aurat-card.mp4".
+   * While `src` is null the section shows a "coming soon" placeholder.
+   */
+  src: null as string | null,
+  poster: null as string | null,
+  duration: "1:30",
 };
 
 export const partnerNetwork = {
@@ -211,4 +245,146 @@ export const finalCta = {
   body: "Become a member, join the partner network, or bring Aurat Card to your city.",
   primary: { label: "Join Now", href: "/contact?topic=Aurat%20Card" },
   secondary: { label: "Become a Partner", href: "/partnerships" },
+};
+
+/* ---------------------------------------------------------------------------
+   Lahore flagship franchise.
+
+   Note on the economics: the yearly incentive figures are exactly PKR 1,000
+   per member, every year — the series is the membership curve scaled, not an
+   independent projection. Charting both would imply two separate findings, so
+   the page charts membership and states the per-member rate instead.
+--------------------------------------------------------------------------- */
+
+export const lahoreFranchise = {
+  eyebrow: "Franchise opportunity",
+  heading: "Get a franchise of *Aurat Card.*",
+  intro:
+    "Lahore is the first Aurat Card territory offered outside the pilot cities: exclusive commercial rights to Pakistan's second-largest urban market, on five-year terms.",
+  kind: "Franchise / Investment — five-year exclusive territorial rights",
+  fee: { label: "Proposed franchise fee", value: "PKR 300M" },
+
+  market: [
+    { value: "13,004,135", label: "Total population (PBS 2023)" },
+    { value: "~6.12M", label: "Addressable female population" },
+    { value: "5 years", label: "Exclusive territorial rights" },
+  ],
+
+  model: {
+    title: "How the franchise works",
+    franchisee: {
+      title: "The franchisee provides",
+      items: [
+        "The licence fee and local operating costs",
+        "Sales, merchant acquisition and local marketing",
+        "The city team, hired and managed locally",
+      ],
+    },
+    cspl: {
+      title: "CSPL provides",
+      items: [
+        "The brand and national positioning",
+        "The central technology platform and app",
+        "Training and onboarding",
+        "Ongoing national platform support",
+      ],
+    },
+  },
+
+  /* ----------------------------- chart series ----------------------------- */
+
+  members: {
+    title: "Projected membership",
+    subtitle: "Verified members in Lahore, years one to five.",
+    unit: "members",
+    points: [
+      { label: "Yr 1", value: 500_000, display: "500K" },
+      { label: "Yr 2", value: 900_000, display: "900K" },
+      { label: "Yr 3", value: 1_200_000, display: "1.2M" },
+      { label: "Yr 4", value: 1_320_000, display: "1.32M" },
+      { label: "Yr 5", value: 1_400_000, display: "1.4M" },
+    ],
+  },
+
+  penetration: {
+    title: "Market penetration",
+    subtitle: "Share of the addressable female population.",
+    unit: "%",
+    points: [
+      { label: "Yr 1", value: 8.17, display: "8.17%" },
+      { label: "Yr 3", value: 19.61, display: "19.61%" },
+      { label: "Yr 5", value: 22.88, display: "22.88%" },
+    ],
+  },
+
+  merchants: {
+    title: "Merchant network",
+    subtitle: "Active partner businesses accepting the card.",
+    unit: "partners",
+    points: [
+      { label: "Yr 1", value: 1_050, display: "1,050" },
+      { label: "Yr 3", value: 3_400, display: "3,400" },
+      { label: "Yr 5", value: 4_500, display: "4,500" },
+    ],
+  },
+
+  economics: {
+    title: "Illustrative five-year economics",
+    caption:
+      "Gross membership-acquisition incentives by year — equivalent to PKR 1,000 per member.",
+    values: [
+      { label: "Year 1", value: "PKR 500M" },
+      { label: "Year 2", value: "PKR 900M" },
+      { label: "Year 3", value: "PKR 1.2B" },
+      { label: "Year 4", value: "PKR 1.32B" },
+      { label: "Year 5", value: "PKR 1.4B" },
+    ],
+    /** Must be rendered wherever the figures above are shown. */
+    footnote:
+      "These are gross membership-acquisition incentives, not guaranteed profit. Actual returns depend on member acquisition cost, marketing spend, staffing, working capital, applicable taxes and the terms of the definitive agreement. Figures are illustrative projections, not a forecast or a representation of results.",
+  },
+
+  sectors: {
+    title: "Strategic sectors",
+    items: [
+      "Universities",
+      "Healthcare hubs",
+      "Retail & hospitality",
+      "Corporate institutions",
+    ],
+  },
+
+  roadmap: {
+    title: "From interest to launch",
+    steps: [
+      {
+        title: "Expression of interest",
+        body: "Register interest and confirm the Lahore territory is available.",
+      },
+      {
+        title: "Qualification & due diligence",
+        body: "Investor qualification, and mutual due diligence on both sides.",
+      },
+      {
+        title: "Terms & agreement",
+        body: "Agree the fee and targets, then execute the definitive agreement.",
+      },
+      {
+        title: "Onboarding & launch",
+        body: "Technology onboarding, team training and launch preparation.",
+      },
+      {
+        title: "Acquisition campaigns",
+        body: "Commence member and merchant acquisition across the city.",
+      },
+    ],
+  },
+
+  disclaimer:
+    "Population figures are from the Pakistan Bureau of Statistics 2023 census. Penetration, membership and merchant figures are projections prepared for discussion and are subject to the definitive agreement.",
+
+  cta: {
+    label: "Request the Lahore Information Pack",
+    href: "/contact?topic=Business%20Opportunity",
+  },
 };

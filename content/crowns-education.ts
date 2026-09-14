@@ -1,5 +1,7 @@
 /** Crowns Education — source: "05- Crowns Education .docx". */
 
+import type { SubProduct } from "./ventures";
+
 export const hero = {
   eyebrow: "Crowns Education",
   heading: "Building the Future of Education Through Technology",
@@ -103,3 +105,24 @@ export const finalCta = {
   },
   secondary: { label: "Contact Us", href: "/contact?topic=Crowns%20Education" },
 };
+
+/**
+ * Product built by SuperApp and operated under this venture.
+ * Source: cms.superapp.pk (read September 2026).
+ */
+export const subProducts: SubProduct[] = [
+  {
+    name: "SmartSchool",
+    positioning:
+      "The campus management platform behind Crowns Education — admissions through to alumni, with a parent portal and native mobile apps.",
+    features: [
+      "Student lifecycle management from admission to alumni records",
+      "Parent portal carrying attendance, results and fee payments",
+      "Automated fee collection, invoicing and payment tracking",
+      "Timetable generation and resource allocation",
+      "iOS and Android apps alongside the web interface",
+      "Encrypted storage with automatic backups",
+    ],
+    poweredBy: "SuperApp",
+  },
+];

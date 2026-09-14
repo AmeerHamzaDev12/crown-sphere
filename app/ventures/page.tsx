@@ -1,4 +1,4 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 
 import { Reveal } from "@/components/reveal";
 import {
@@ -46,7 +46,7 @@ export default function VenturesPage() {
                   className="group grid gap-8 py-10 md:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)_auto] md:items-start md:gap-12 md:py-12"
                 >
                   <div>
-                    <h2 className="display group-hover:text-royal text-[clamp(1.6rem,3vw,2.4rem)] font-semibold transition-colors">
+                    <h2 className="display group-hover:text-accent text-[clamp(1.6rem,3vw,2.4rem)] font-semibold transition-colors">
                       {venture.name}
                     </h2>
                     <StatusBadge status={venture.status} className="mt-5" />
@@ -62,7 +62,7 @@ export default function VenturesPage() {
                     />
                   </div>
 
-                  <span className="border-line text-mist group-hover:border-royal group-hover:bg-royal flex h-12 w-12 shrink-0 items-center justify-center rounded-full border transition-all duration-300 group-hover:text-white">
+                  <span className="border-line text-mist group-hover:border-accent group-hover:bg-royal flex h-12 w-12 shrink-0 items-center justify-center rounded-full border transition-all duration-300 group-hover:text-white">
                     <ArrowIcon className="h-4.5 w-4.5 transition-transform duration-300 group-hover:translate-x-0.5" />
                   </span>
                 </a>

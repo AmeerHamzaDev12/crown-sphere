@@ -45,7 +45,7 @@ export default function OpportunitiesPage() {
                 <Card id={item.id} className="scroll-mt-32 sm:p-10">
                   <div className="grid gap-10 lg:grid-cols-[1.3fr_1fr] lg:gap-16">
                     <div>
-                      <p className="text-ember text-[11px] font-medium tracking-[0.16em] uppercase">
+                      <p className="text-accent text-[11px] font-medium tracking-[0.16em] uppercase">
                         {item.kind}
                       </p>
                       <h2 className="display mt-5 text-[clamp(1.8rem,3.6vw,2.75rem)] font-semibold">

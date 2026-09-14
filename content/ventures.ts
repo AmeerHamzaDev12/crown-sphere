@@ -11,6 +11,22 @@ export type VentureStatus =
   | "Coming Soon"
   | "Launching Soon";
 
+/**
+ * A product built by our technology partner and operated under a venture.
+ *
+ * This is the one field `points: string[]` could not carry — a sub-product
+ * needs a name, its own positioning line and a feature list, not a flat string.
+ * Sub-product lists live in the per-venture content file (e.g.
+ * content/crowns-health.ts), matching how the rest of page detail is stored.
+ */
+export type SubProduct = {
+  name: string;
+  positioning: string;
+  features: string[];
+  /** Shown as a small text credit under each card. */
+  poweredBy: string;
+};
+
 export type Venture = {
   slug: string;
   name: string;
@@ -19,6 +35,8 @@ export type Venture = {
   status: VentureStatus;
   /** Short service or capability list shown on the card. */
   points: string[];
+  /** Node colour in the ecosystem orbit — from the reference build. */
+  color: string;
   cta: { label: string; href: string };
   /** Feature the venture in the large tile at the top of the grid. */
   featured?: boolean;
@@ -27,6 +45,7 @@ export type Venture = {
 export const ventures: Venture[] = [
   {
     slug: "aurat-card",
+    color: "#edacd0",
     name: "Aurat Card",
     href: "/aurat-card",
     summary:
@@ -42,6 +61,7 @@ export const ventures: Venture[] = [
   },
   {
     slug: "crowns-financial",
+    color: "#b9d8ba",
     name: "Crowns Financial",
     href: "/crowns-financial",
     summary:
@@ -57,6 +77,7 @@ export const ventures: Venture[] = [
   },
   {
     slug: "crowns-education",
+    color: "#f0c588",
     name: "Crowns Education",
     href: "/crowns-education",
     summary:
@@ -72,6 +93,7 @@ export const ventures: Venture[] = [
   },
   {
     slug: "crowns-health",
+    color: "#a6d6db",
     name: "Crowns Health",
     href: "/crowns-health",
     summary:
@@ -87,6 +109,7 @@ export const ventures: Venture[] = [
   },
   {
     slug: "crowns-marketing",
+    color: "#e9a88b",
     name: "Crowns Marketing",
     href: "/crowns-marketing",
     summary:
@@ -103,6 +126,7 @@ export const ventures: Venture[] = [
   },
   {
     slug: "digital-marketplace",
+    color: "#c5b6ee",
     name: "Digital Enterprise & Marketplace",
     href: "/digital-marketplace",
     summary:
@@ -117,6 +141,7 @@ export const ventures: Venture[] = [
   },
   {
     slug: "travel-visa",
+    color: "#a9c7ec",
     name: "Travel & Visa Drop Box",
     href: "/travel-visa",
     summary:
@@ -131,6 +156,7 @@ export const ventures: Venture[] = [
   },
   {
     slug: "crowns-tv",
+    color: "#e9e29b",
     name: "Crowns TV",
     href: "/crowns-tv",
     summary:

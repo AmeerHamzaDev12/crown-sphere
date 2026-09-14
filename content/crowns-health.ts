@@ -4,6 +4,8 @@
  * "06- Crowns Health .docx".
  */
 
+import type { SubProduct } from "./ventures";
+
 export const hero = {
   eyebrow: "Crowns Health",
   heading: "World-Class Healthcare, Rooted in Pakistan",
@@ -247,3 +249,36 @@ export const finalCta = {
 
 export const disclaimer =
   "Crowns Health is a venture of Crowns Sphere Private Limited. All medical services are delivered by licensed physicians. Telemedicine is not a substitute for emergency care. In case of emergency, call 1122 or proceed to the nearest hospital.";
+
+/**
+ * Products built by SuperApp and operated under this venture.
+ * Sources: klinic.superapp.pk, ezshifa.com (read September 2026).
+ */
+export const subProducts: SubProduct[] = [
+  {
+    name: "Klinic",
+    positioning:
+      "An operating system for a clinic — patient records, scheduling, clinical workflow, pharmacy, billing and payroll in one place. Runs a single practice or a multi-site network.",
+    features: [
+      "Unified patient records with full appointment and care history",
+      "Scheduling with waitlists, reminders and a live view of the day",
+      "Consultations, lab orders and prescriptions tracked end to end",
+      "Pharmacy inventory, invoicing and payment collection",
+      "Attendance, leave and payroll built around clinic rotas",
+    ],
+    poweredBy: "SuperApp",
+  },
+  {
+    name: "EZShifa",
+    positioning:
+      "Telehealth delivered through kiosks and connected devices, reaching patients in places where the nearest clinic is far away.",
+    features: [
+      "Telehealth kiosks combining vital monitoring, screening and video consultation",
+      "A pregnancy care pathway for expecting and new mothers",
+      "AI-assisted capture and recording of patient vitals",
+      "School health screening with tracking dashboards for parents and staff",
+      "Access to psychiatrists and therapists for mental health support",
+    ],
+    poweredBy: "SuperApp",
+  },
+];

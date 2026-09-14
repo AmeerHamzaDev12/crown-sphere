@@ -15,7 +15,8 @@ export function Marquee({
   items: readonly string[];
   /** Seconds for one full loop — higher is slower. */
   speed?: number;
-  tone?: "ink" | "cream";
+  /** `band` is the reference build's solid purple ticker. */
+  tone?: "ink" | "cream" | "band";
   className?: string;
 }) {
   const doubled = [...items, ...items];
@@ -24,8 +25,10 @@ export function Marquee({
     <div
       className={cx(
         "group relative flex overflow-hidden",
-        // fade the strip out at both edges
-        "[mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]",
+        // The band is a solid edge-to-edge strip, so it keeps its hard edges.
+        tone === "band"
+          ? "bg-royal py-4"
+          : "[mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]",
         className,
       )}
     >
@@ -38,18 +41,30 @@ export function Marquee({
             key={`${item}-${index}`}
             aria-hidden={index >= items.length}
             className={cx(
-              "flex items-center gap-10 px-10 whitespace-nowrap",
-              tone === "cream" ? "text-ink/45" : "text-mist/60",
+              "flex items-center whitespace-nowrap",
+              tone === "band"
+                ? "gap-7 px-7 text-[#f0daf1]"
+                : "gap-10 px-10",
+              tone === "cream" && "text-ink/45",
+              tone === "ink" && "text-mist/60",
             )}
           >
-            <span className="font-display text-xl font-medium tracking-[-0.02em] sm:text-2xl">
+            <span
+              className={cx(
+                tone === "band"
+                  ? "text-xs tracking-[0.16em] uppercase"
+                  : "font-display text-xl font-medium tracking-[-0.02em] sm:text-2xl",
+              )}
+            >
               {item}
             </span>
             <span
               aria-hidden="true"
               className={cx(
                 "h-1.5 w-1.5 rounded-full",
-                tone === "cream" ? "bg-ink/20" : "bg-line",
+                tone === "cream" && "bg-ink/20",
+                tone === "ink" && "bg-line",
+                tone === "band" && "bg-[#f0daf1]/50",
               )}
             />
           </li>

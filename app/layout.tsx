@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Manrope } from "next/font/google";
+import { DM_Sans, Manrope } from "next/font/google";
 
 import { Preloader } from "@/components/preloader";
 import { ScrollProgress } from "@/components/scroll-progress";
@@ -8,8 +8,8 @@ import { SiteHeader } from "@/components/site-header";
 import { company } from "@/content/site";
 import "./globals.css";
 
-const inter = Inter({
-  variable: "--font-inter",
+const dmSans = DM_Sans({
+  variable: "--font-dm-sans",
   subsets: ["latin"],
   display: "swap",
 });
@@ -68,7 +68,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       // The script below adds `data-reveal-ready` before React hydrates, so the
       // server HTML and the live DOM differ by that one attribute on purpose.
       suppressHydrationWarning
-      className={`${inter.variable} ${manrope.variable} h-full antialiased`}
+      className={`${dmSans.variable} ${manrope.variable} h-full antialiased`}
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: revealBootstrap }} />

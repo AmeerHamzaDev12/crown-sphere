@@ -5,43 +5,60 @@
    Everything visual starts here. Change a value in @theme and it propagates
    to every utility class across the site (bg-ember, text-mist, rounded-card…).
 --------------------------------------------------------------------------- */
+/* ---------------------------------------------------------------------------
+   Palette and type are taken verbatim from the reference build at
+   E:\Crowns-Sphere-Website (style.css `:root`), so the two sites match:
+
+     --bg #151018   --panel #1d1621   --line #ffffff20
+     --text #f6f1f7 --muted #b9adbd   --purple #79207c  --accent #d7a3de
+
+   `--color-royal` is that deep purple — it fills buttons and bands.
+   `--color-accent` is the light lilac — it carries accent *text* on dark,
+   where the deep purple would be unreadable. Same split the reference uses.
+--------------------------------------------------------------------------- */
 @theme {
-  /* Canvas & surfaces (dark-first) */
-  --color-ink: #08080a;
-  --color-ink-2: #0d0d10;
-  --color-surface: #131317;
-  --color-surface-2: #1a1a1f;
-  --color-line: #26262d;
-  --color-line-soft: #1d1d23;
+  /* Canvas & surfaces */
+  --color-ink: #151018;
+  --color-ink-2: #1a131e;
+  --color-surface: #1d1621;
+  --color-surface-2: #2e1d31;
+  --color-line: #ffffff20;
+  --color-line-soft: #ffffff12;
 
-  /* Light section (the one bright band, like the reference site) */
-  --color-cream: #f5f2f6;
-  --color-cream-2: #e8e3ea;
+  /* Light sections — `cream` is the near-white band kept from our build,
+     `cream-2` is the reference's pink feature panel. */
+  --color-cream: #e2c5db;
+  --color-cream-2: #e6cbdc;
+  --color-cream-ink: #27182a;
+  --color-cream-muted: #6c5d6d;
 
-  /* Brand accent — lifted from the logo purple so it holds its own on black.
-     --color-logo is the mark's own colour; --color-plum is for glows. */
-  --color-royal: #a233c4;
-  --color-royal-2: #b954d6;
-  --color-plum: #5c1d6b;
-  --color-logo: #7b2d8e;
-
-  /* Secondary accent — kept for numerals and category labels */
-  --color-ember: #fe4a23;
-  --color-ember-2: #ff7048;
-  --color-gold: #e8b23c;
+  /* Brand */
+  --color-royal: #79207c;
+  --color-royal-2: #8e2a92;
+  --color-plum: #79207c;
+  --color-logo: #79207c;
+  --color-accent: #d7a3de;
+  --color-accent-2: #e8c8ed;
 
   /* Text */
-  --color-mist: #a2a2ad;
-  --color-dim: #6c6c78;
+  --color-mist: #b9adbd;
+  --color-dim: #8a708e;
+
+  /* Form validation. The reference has no error colour, so this is a muted
+     rose chosen to sit inside the plum palette rather than shout against it. */
+  --color-warn: #e0879b;
 
   /* Radii */
   --radius-card: 1.75rem;
   --radius-card-lg: 2.25rem;
 
-  /* Type families (wired up in app/layout.tsx via next/font) */
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-manrope), var(--font-inter), ui-sans-serif,
-    system-ui, sans-serif;
+  /* Type families — DM Sans for body, Manrope for headings, Georgia italic
+     for accent words. Same three as the reference build. */
+  --font-sans: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-display:
+    var(--font-manrope), var(--font-dm-sans), ui-sans-serif, system-ui,
+    sans-serif;
+  --font-accent: Georgia, "Times New Roman", serif;
 
   /* Motion */
   --ease-out-soft: cubic-bezier(0.16, 1, 0.3, 1);
@@ -63,10 +80,25 @@ html {
 
 body {
   background-color: var(--color-ink);
-  color: #ffffff;
+  color: #f6f1f7;
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+}
+
+/* Accent words inside headings: Georgia italic in lilac, as in the reference
+   build. Write them in content as *asterisks* — see `withAccent` in ui.tsx. */
+em {
+  font-family: var(--font-accent);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  color: var(--color-accent);
+}
+
+/* On the light band the deep purple reads better than the lilac. */
+.tone-cream em {
+  color: var(--color-royal);
 }
 
 ::selection {
@@ -111,10 +143,12 @@ body {
 }
 
 /* Headline treatment: tight tracking + balanced line breaks */
+/* Matches the reference h1/h2: Manrope 500, -0.05em tracking, 1.1 leading. */
 @utility display {
   font-family: var(--font-display);
-  letter-spacing: -0.035em;
-  line-height: 1.02;
+  font-weight: 500;
+  letter-spacing: -0.05em;
+  line-height: 1.1;
   text-wrap: balance;
 }
 
@@ -179,6 +213,127 @@ body {
 
 .float-slow {
   animation: float-y 7s ease-in-out infinite;
+}
+
+/* ---------------------------------------------------------------------------
+   Hero spiral (public/sphere.png) — the drifting glass rings from the
+   reference build. Slow scale + rotation, alternating so it never snaps back.
+--------------------------------------------------------------------------- */
+@keyframes hero-drift {
+  from {
+    transform: scale(1.02) rotate(-2deg);
+  }
+  to {
+    transform: scale(1.11) rotate(3deg);
+  }
+}
+
+.hero-art {
+  transform-origin: 65% 55%;
+  will-change: transform;
+  animation:
+    hero-arrive 1.8s ease-out both,
+    hero-drift 16s ease-in-out 1.8s infinite alternate;
+}
+
+@keyframes hero-arrive {
+  from {
+    opacity: 0;
+    transform: scale(1.05);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1.02);
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Ecosystem orbit (components/ecosystem-orbit.tsx)
+
+   The ring turns while every label turns the opposite way by the same amount,
+   so the text stays upright. All three animations share one duration — if you
+   change it, change all of them together or the labels will drift.
+--------------------------------------------------------------------------- */
+@keyframes orbit-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes orbit-label {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(-360deg);
+  }
+}
+
+@keyframes orbit-center {
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes orbit-dash {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.orbit-spin {
+  animation: orbit-spin 100s linear infinite;
+}
+
+.orbit-node {
+  animation: orbit-label 100s linear infinite;
+}
+
+.orbit-center {
+  animation: orbit-center 100s linear infinite;
+}
+
+.orbit-ring-dashed {
+  animation: orbit-dash 100s linear infinite;
+}
+
+.orbit-ring {
+  border-top-color: #e4b6ef;
+  animation: orbit-dash 32s linear infinite;
+}
+
+/* Hovering, focusing or pressing pause freezes the whole ring. */
+.orbit-stage:hover .orbit-spin,
+.orbit-stage:hover .orbit-node,
+.orbit-stage:hover .orbit-center,
+.orbit-stage:focus-within .orbit-spin,
+.orbit-stage:focus-within .orbit-node,
+.orbit-stage:focus-within .orbit-center,
+.orbit-stage.is-paused .orbit-spin,
+.orbit-stage.is-paused .orbit-node,
+.orbit-stage.is-paused .orbit-center {
+  animation-play-state: paused;
+}
+
+.orbit-node:hover .node-number {
+  transform: translateY(-5px) scale(1.14);
+}
+
+/* The detail panel slides in when the selected venture changes (the `key` on
+   the element remounts it, which restarts this). */
+@keyframes card-in {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.selection-body {
+  animation: card-in 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) both;
 }
 
 /* ---------------------------------------------------------------------------
@@ -281,11 +436,7 @@ body {
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background: linear-gradient(
-    90deg,
-    var(--color-royal),
-    var(--color-royal-2)
-  );
+  background: linear-gradient(90deg, var(--color-royal), var(--color-royal-2));
   transform-origin: left;
   animation: loader-fill 1.35s var(--ease-out-soft) both;
 }
@@ -432,7 +583,18 @@ body {
   .ray-blink,
   .glow-pulse,
   .float-slow,
-  .marquee-track {
+  .marquee-track,
+  .hero-art,
+  .orbit-spin,
+  .orbit-node,
+  .orbit-center,
+  .orbit-ring,
+  .orbit-ring-dashed {
     animation: none;
+  }
+  /* The ring is laid out by the rotation transform, so it still needs its
+     label offset even with the animation off. */
+  .orbit-node {
+    transform: translate(-50%, -50%);
   }
 }

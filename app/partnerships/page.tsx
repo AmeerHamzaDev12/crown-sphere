@@ -58,7 +58,7 @@ export default function PartnershipsPage() {
             {approach.items.map((item, i) => (
               <Reveal as="li" key={item.title} delay={(i % 4) * 80}>
                 <Card className="h-full">
-                  <span className="text-ember font-display text-sm font-semibold">
+                  <span className="text-accent font-display text-sm">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   <h3 className="display mt-6 text-2xl font-semibold">
@@ -122,7 +122,7 @@ export default function PartnershipsPage() {
             <Card className="from-surface to-ink bg-gradient-to-br sm:p-12">
               <div className="grid gap-10 lg:grid-cols-[1.3fr_1fr] lg:items-center">
                 <div>
-                  <p className="text-ember text-[11px] font-medium tracking-[0.16em] uppercase">
+                  <p className="text-accent text-[11px] font-medium tracking-[0.16em] uppercase">
                     {auratCard.eyebrow}
                   </p>
                   <h2 className="display mt-5 text-[clamp(2rem,4vw,3rem)] font-semibold">
@@ -190,7 +190,7 @@ export default function PartnershipsPage() {
             {opportunities.map((item, i) => (
               <Reveal as="li" key={item.id} delay={i * 90}>
                 <Card className="flex h-full flex-col">
-                  <p className="text-ember text-[11px] font-medium tracking-[0.16em] uppercase">
+                  <p className="text-accent text-[11px] font-medium tracking-[0.16em] uppercase">
                     {item.kind}
                   </p>
                   <h3 className="display mt-5 text-2xl font-semibold">

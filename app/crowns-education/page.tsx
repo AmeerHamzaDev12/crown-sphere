@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 import { Reveal } from "@/components/reveal";
+import { SubProducts } from "@/components/sub-products";
 import {
   ArrowLink,
   Card,
@@ -23,6 +24,7 @@ import {
   hero,
   pathways,
   readers,
+  subProducts,
 } from "@/content/crowns-education";
 
 export const metadata: Metadata = {
@@ -178,6 +180,18 @@ export default function CrownsEducationPage() {
             Programme availability, academic pathways and qualifications are
             subject to the requirements and approval of the relevant institution.
           </Disclaimer>
+        </Container>
+      </Section>
+
+      {/* ------------------------------------------------------ sub-products */}
+      <Section tone="surface">
+        <Container>
+          <SubProducts
+            eyebrow="Built with SuperApp"
+            heading="The platform behind our campus system."
+            intro="Our campus management offering is delivered on a partner-built school platform, supported and implemented by Crowns Education."
+            items={subProducts}
+          />
         </Container>
       </Section>
 

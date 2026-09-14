@@ -52,7 +52,7 @@ export default function CrownsMarketingPage() {
             {services.items.map((item, i) => (
               <Reveal as="li" key={item.title} delay={(i % 3) * 80}>
                 <Card className="h-full">
-                  <span className="text-ember font-display text-sm font-semibold">
+                  <span className="text-accent font-display text-sm">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   <h3 className="display mt-6 text-2xl font-semibold">

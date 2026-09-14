@@ -45,7 +45,6 @@ export const ventureNav: NavChild[] = [
 export const mainNav: NavItem[] = [
   { label: "About", href: "/about" },
   { label: "Ventures", href: "/ventures", children: ventureNav },
-  { label: "Aurat Card", href: "/aurat-card" },
   { label: "Opportunities", href: "/opportunities" },
   { label: "Partnerships", href: "/partnerships" },
   { label: "News", href: "/news" },

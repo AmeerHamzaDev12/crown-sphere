@@ -2,7 +2,7 @@
 
 export const hero = {
   eyebrow: "Crowns Sphere Private Limited",
-  headline: "Building the infrastructure behind Pakistan's next platforms",
+  headline: "Building the infrastructure behind *Pakistan's next platforms*",
   body: "Crowns Sphere Private Limited is a Pakistan-based company building and investing in businesses, platforms and partnerships across high-growth and high-impact sectors.",
   primary: { label: "Explore Our Ventures", href: "/ventures" },
   secondary: { label: "Partner With Us", href: "/partnerships" },
@@ -15,9 +15,17 @@ export const heroStats = [
   { value: "3", label: "Cities open for Aurat Card franchises" },
 ];
 
+/** Purple ticker strip beneath the hero, as in the reference build. */
+export const tickerItems = [
+  "Build with purpose",
+  "Invest in possibility",
+  "Grow together",
+  "Build in Pakistan",
+];
+
 export const whoWeAre = {
   eyebrow: "Who we are",
-  heading: "Building Businesses. Creating Platforms. Developing Opportunities.",
+  heading: "Building businesses. *Creating platforms.*",
   body: "CSPL builds, operates and invests in businesses and technology-enabled platforms while developing strategic partnerships and opportunities across multiple sectors. We identify opportunities, develop solutions and work with partners to create businesses designed for sustainable growth and long-term value.",
   cta: { label: "Learn More About CSPL", href: "/about" },
   pillars: [
@@ -42,14 +50,14 @@ export const whoWeAre = {
 
 export const venturesIntro = {
   eyebrow: "Our business & venture ecosystem",
-  heading: "Businesses & Platforms We Are Building",
+  heading: "Different worlds. *Shared ambition.*",
   intro:
     "Our portfolio includes operating businesses, technology platforms, emerging ventures and partnership opportunities at different stages of development.",
 };
 
 export const auratCardFeature = {
   eyebrow: "Featured venture",
-  heading: "A Digital Platform Built to Empower Women Across Pakistan",
+  heading: "A stronger future. *For her.*",
   body: "Aurat Card is a digital platform designed to connect women with benefits, services, businesses and opportunities through an integrated digital ecosystem.",
   ambition:
     "Our ambition: building toward a community of 1 million verified women across Pakistan.",
@@ -67,7 +75,7 @@ export const auratCardFeature = {
 
 export const partners = {
   eyebrow: "Partnerships",
-  heading: "Partners Across Multiple Sectors",
+  heading: "Partners across *multiple sectors.*",
   intro:
     "We work with businesses and institutions across healthcare, education, hospitality, retail and lifestyle services.",
   /**
@@ -89,7 +97,7 @@ export const partners = {
 
 export const opportunitiesIntro = {
   eyebrow: "Strategic opportunities",
-  heading: "Business & Investment Opportunities",
+  heading: "Find your place *in the sphere.*",
   intro:
     "Crowns Sphere identifies and facilitates opportunities for entrepreneurs, investors and strategic partners across its growing portfolio of businesses and ventures.",
   cta: { label: "Explore Opportunities", href: "/opportunities" },
@@ -97,7 +105,7 @@ export const opportunitiesIntro = {
 
 export const crownsTvStrip = {
   eyebrow: "Media",
-  heading: "Stories, Ideas & Opportunities",
+  heading: "Stories, ideas *& opportunities.*",
   body: "Crowns TV brings the Crowns Sphere ecosystem to life through stories, updates, insights and opportunities across our ventures and businesses.",
   categories: [
     "CSPL",
@@ -112,14 +120,14 @@ export const crownsTvStrip = {
 
 export const newsIntro = {
   eyebrow: "News & insights",
-  heading: "News, Insights & Updates",
+  heading: "News, insights *& updates.*",
   intro:
     "Follow the latest developments across Crowns Sphere — from venture launches and partnerships to business opportunities, technology and insights.",
   cta: { label: "Explore News & Insights", href: "/news" },
 };
 
 export const finalCta = {
-  heading: "Let's Build Something Together",
+  heading: "Let's build *something that matters.*",
   body: "Whether you want to explore a partnership, discuss a business opportunity, learn about one of our ventures or work with us, we'd like to hear from you.",
   primary: { label: "Contact Us", href: "/contact" },
   secondary: { label: "Explore Our Ventures", href: "/ventures" },

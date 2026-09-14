@@ -49,7 +49,7 @@ export function ScrollProgress() {
     >
       <div
         ref={ref}
-        className="from-royal to-royal-2 h-full origin-left scale-x-0 bg-gradient-to-r"
+        className="from-royal to-accent h-full origin-left scale-x-0 bg-gradient-to-r"
       />
     </div>
   );

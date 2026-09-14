@@ -2,7 +2,7 @@
 
 export const hero = {
   eyebrow: "Contact",
-  heading: "Let's Connect",
+  heading: "Let's *connect.*",
   body: "Whether you want to explore a partnership, discuss a business opportunity, learn about one of our ventures or work with us, we'd like to hear from you.",
 };
 

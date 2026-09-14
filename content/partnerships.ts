@@ -2,7 +2,7 @@
 
 export const hero = {
   eyebrow: "Partnerships",
-  heading: "Building Through Partnerships",
+  heading: "Building through *partnerships.*",
   body: "CSPL works with businesses, institutions, organizations and strategic partners to build, develop and scale ventures, platforms and opportunities.",
 };
 

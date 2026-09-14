@@ -2,7 +2,7 @@
 
 export const hero = {
   eyebrow: "About Crowns Sphere",
-  heading: "Building Businesses. Creating Platforms. Developing Opportunities.",
+  heading: "Building businesses. *Creating platforms.*",
   body: "CSPL builds, operates and invests in businesses and technology-enabled platforms while developing strategic partnerships and opportunities across multiple sectors. We identify opportunities, develop solutions and work with partners to create businesses designed for sustainable growth and long-term value.",
 };
 
@@ -110,7 +110,7 @@ export const visionMission = {
 };
 
 export const finalCta = {
-  heading: "Let's Build Something Together",
+  heading: "Let's build *something that matters.*",
   body: "Whether you want to explore a partnership, discuss a business opportunity, learn about one of our ventures or work with us, we'd like to hear from you.",
   primary: { label: "Contact Us", href: "/contact" },
   secondary: { label: "Partner With Crowns Sphere", href: "/partnerships" },

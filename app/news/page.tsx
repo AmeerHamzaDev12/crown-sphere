@@ -49,7 +49,7 @@ export default function NewsPage() {
                 <div className="grid gap-10 lg:grid-cols-[1.4fr_1fr] lg:items-end">
                   <div>
                     <div className="flex flex-wrap items-center gap-3">
-                      <span className="bg-ember/12 text-ember rounded-full px-3.5 py-1.5 text-[11px] font-medium tracking-[0.1em] uppercase">
+                      <span className="bg-accent/12 text-accent rounded-full px-3.5 py-1.5 text-[11px] font-medium tracking-[0.1em] uppercase">
                         {featured.category}
                       </span>
                       <span className="text-dim text-xs">{featured.date}</span>
@@ -77,7 +77,7 @@ export default function NewsPage() {
                 <Reveal as="li" key={article.slug} delay={(i % 3) * 80}>
                   <Card className="flex h-full flex-col">
                     <div className="flex flex-wrap items-center gap-3">
-                      <span className="bg-ember/12 text-ember rounded-full px-3 py-1 text-[11px] font-medium tracking-[0.1em] uppercase">
+                      <span className="bg-accent/12 text-accent rounded-full px-3 py-1 text-[11px] font-medium tracking-[0.1em] uppercase">
                         {article.category}
                       </span>
                       <span className="text-dim text-xs">{article.date}</span>
@@ -127,7 +127,7 @@ export default function NewsPage() {
             {opportunities.map((item, i) => (
               <Reveal as="li" key={item.id} delay={i * 90}>
                 <Card className="flex h-full flex-col">
-                  <p className="text-ember text-[11px] font-medium tracking-[0.16em] uppercase">
+                  <p className="text-accent text-[11px] font-medium tracking-[0.16em] uppercase">
                     {item.kind}
                   </p>
                   <h3 className="display mt-5 text-2xl font-semibold">

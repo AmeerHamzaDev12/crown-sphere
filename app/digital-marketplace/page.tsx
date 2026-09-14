@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 import { Reveal } from "@/components/reveal";
+import { SubProducts } from "@/components/sub-products";
 import {
   ArrowIcon,
   Card,
@@ -24,6 +25,7 @@ import {
   marketplace,
   platform,
   statuses,
+  subProducts,
 } from "@/content/digital-marketplace";
 
 export const metadata: Metadata = {
@@ -207,6 +209,18 @@ export default function DigitalMarketplacePage() {
               ))}
             </dl>
           </Reveal>
+        </Container>
+      </Section>
+
+      {/* ------------------------------------------------------ sub-products */}
+      <Section tone="surface">
+        <Container>
+          <SubProducts
+            eyebrow="Built with SuperApp"
+            heading="The software running underneath."
+            intro="Two operational platforms businesses can adopt through the marketplace, built by our technology partner and supported by CSPL."
+            items={subProducts}
+          />
         </Container>
       </Section>
 

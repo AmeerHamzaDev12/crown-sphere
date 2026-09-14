@@ -100,7 +100,7 @@ export default function ContactPage() {
                       <dd className="mt-2 text-sm">
                         <a
                           href={`mailto:${company.email}`}
-                          className="hover:text-royal text-white transition-colors"
+                          className="hover:text-accent text-white transition-colors"
                         >
                           {company.email}
                         </a>
@@ -113,7 +113,7 @@ export default function ContactPage() {
                       <dd className="mt-2 text-sm">
                         <a
                           href={`tel:${company.phoneHref}`}
-                          className="hover:text-royal text-white transition-colors"
+                          className="hover:text-accent text-white transition-colors"
                         >
                           {company.phone}
                         </a>

@@ -106,7 +106,7 @@ export function StarField({
         ctx.beginPath();
         ctx.arc(x, y, star.radius, 0, Math.PI * 2);
         ctx.fillStyle = star.tinted
-          ? `rgba(186, 130, 224, ${alpha})`
+          ? `rgba(215, 163, 222, ${alpha})`
           : `rgba(255, 255, 255, ${alpha})`;
         ctx.fill();
       }

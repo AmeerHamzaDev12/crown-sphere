@@ -1,4 +1,7 @@
-﻿import { Marquee } from "@/components/marquee";
+import Image from "next/image";
+
+import { EcosystemOrbit } from "@/components/ecosystem-orbit";
+import { Marquee } from "@/components/marquee";
 import { PhoneMockup } from "@/components/phone-mockup";
 import { Reveal } from "@/components/reveal";
 import { StarField } from "@/components/star-field";
@@ -15,6 +18,7 @@ import {
   SectionHeading,
   Stat,
   StatusBadge,
+  withAccent,
 } from "@/components/ui";
 import {
   auratCardFeature,
@@ -25,6 +29,7 @@ import {
   newsIntro,
   opportunitiesIntro,
   partners,
+  tickerItems,
   venturesIntro,
   whoWeAre,
 } from "@/content/home";
@@ -32,33 +37,57 @@ import { opportunities } from "@/content/opportunities";
 import { ventures } from "@/content/ventures";
 
 export default function HomePage() {
-  const [featured, ...rest] = ventures;
+  const [featured] = ventures;
 
   return (
     <>
       {/* ---------------------------------------------------------------- hero */}
-      <section className="bg-ink relative overflow-hidden pt-40 pb-20 md:pt-52 md:pb-28">
+      <section className="bg-ink relative overflow-hidden pt-24 pb-20 md:pt-32 md:pb-28">
+        {" "}
         <div
           aria-hidden="true"
           className="glow-pulse from-plum/55 pointer-events-none absolute -top-64 left-1/2 h-[720px] w-[1100px] -translate-x-1/2 rounded-full bg-gradient-to-b via-transparent to-transparent blur-3xl"
+        />
+        {/* Glass spiral from the reference build, drifting slowly. Sits right
+            of centre, sized to its real 3:2 aspect ratio (1536x1024) and
+            vertically centered instead of stretched to fill the section —
+            that stretch + object-cover was what blew it up and cropped it. */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute  right-0 left-[26%] aspect-[3/2] overflow-hidden  lg:left-[30%]"
+        >
+          <Image
+            src="/sphere.png"
+            alt=""
+            fill
+            priority
+            sizes="(max-width: 780px) 100vw, 72vw"
+            className="hero-art object-contain"
+          />
+        </div>
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,#151018_0%,#151018ef_19%,#15101855_55%,transparent_83%),linear-gradient(0deg,#151018,transparent_18%)]"
         />
         <StarField density={1.15} parallax={0.28} />
         <div
           aria-hidden="true"
           className="grain-layer pointer-events-none absolute inset-0 opacity-[0.035] mix-blend-overlay"
         />
-
         {/* Stagger only; the wait for the preloader comes from --enter-delay,
             which drops to 0 once the splash has run. See globals.css. */}
         <Container className="relative">
-          <div className="rise-in" style={{ "--enter-stagger": "80ms" } as React.CSSProperties}>
+          <div
+            className="rise-in"
+            style={{ "--enter-stagger": "80ms" } as React.CSSProperties}
+          >
             <Eyebrow>{hero.eyebrow}</Eyebrow>
           </div>
           <h1
             className="display rise-in mt-7 max-w-[16ch] text-[clamp(2.75rem,7.5vw,6rem)] font-semibold"
             style={{ "--enter-stagger": "180ms" } as React.CSSProperties}
           >
-            {hero.headline}
+            {withAccent(hero.headline)}
           </h1>
           <p
             className="text-mist rise-in mt-8 max-w-2xl text-lg leading-relaxed text-pretty sm:text-xl"
@@ -86,6 +115,9 @@ export default function HomePage() {
           </div>
         </Container>
       </section>
+
+      {/* The reference build's purple ticker, directly under the hero. */}
+      <Marquee tone="band" speed={34} items={tickerItems} />
 
       {/* ------------------------------------------------------------ who we are */}
       <Section tone="surface" id="who-we-are">
@@ -130,16 +162,20 @@ export default function HomePage() {
       {/* -------------------------------------------------------------- ventures */}
       <Section id="ventures">
         <Container>
+          {/* The rotating ecosystem explorer from the reference build. Now
+              the only place non-featured ventures are shown on the home
+              page — the card grid that used to sit below was removed since
+              this panel already surfaces the same summary + bullet points
+              for every venture as you cycle through them. */}
           <Reveal>
-            <SectionHeading
+            <EcosystemOrbit
               eyebrow={venturesIntro.eyebrow}
-              title={venturesIntro.heading}
+              heading={withAccent(venturesIntro.heading)}
               intro={venturesIntro.intro}
             />
           </Reveal>
 
-          <div className="mt-16 grid gap-5">
-            {/* Featured tile */}
+          <div className="mt-24">
             <Reveal>
               <LinkCard
                 href={featured.href}
@@ -152,42 +188,20 @@ export default function HomePage() {
                 <div className="relative grid gap-8 lg:grid-cols-[1.4fr_1fr] lg:items-end">
                   <div>
                     <StatusBadge status={featured.status} />
-                    <h3 className="display group-hover:text-royal mt-6 text-[clamp(1.9rem,4vw,3rem)] font-semibold transition-colors">
+                    <h3 className="display group-hover:text-accent mt-6 text-[clamp(1.9rem,4vw,3rem)] font-semibold transition-colors">
                       {featured.name}
                     </h3>
                     <p className="text-mist measure mt-5 text-base leading-relaxed sm:text-lg">
                       {featured.summary}
                     </p>
                   </div>
-                  <PillList items={featured.points} className="lg:justify-end" />
+                  <PillList
+                    items={featured.points}
+                    className="lg:justify-end"
+                  />
                 </div>
               </LinkCard>
             </Reveal>
-
-            {/* The rest */}
-            <ul className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-              {rest.map((venture, i) => (
-                <Reveal as="li" key={venture.slug} delay={(i % 3) * 90}>
-                  <LinkCard href={venture.href} className="h-full">
-                    <StatusBadge status={venture.status} />
-                    <h3 className="display group-hover:text-royal mt-6 text-2xl font-semibold transition-colors">
-                      {venture.name}
-                    </h3>
-                    <p className="text-mist mt-4 text-sm leading-relaxed">
-                      {venture.summary}
-                    </p>
-                    <ul className="border-line-soft mt-6 space-y-2 border-t pt-6">
-                      {venture.points.slice(0, 4).map((point) => (
-                        <li key={point} className="text-dim flex gap-2.5 text-xs">
-                          <span className="bg-royal mt-1.5 h-1 w-1 shrink-0 rounded-full" />
-                          {point}
-                        </li>
-                      ))}
-                    </ul>
-                  </LinkCard>
-                </Reveal>
-              ))}
-            </ul>
           </div>
 
           <div className="mt-12">
@@ -213,10 +227,7 @@ export default function HomePage() {
                 {auratCardFeature.access}
               </p>
               <div className="mt-10 flex flex-wrap items-center gap-3">
-                <CtaButton
-                  href={auratCardFeature.primary.href}
-                  variant="light"
-                >
+                <CtaButton href={auratCardFeature.primary.href} variant="light">
                   {auratCardFeature.primary.label}
                 </CtaButton>
                 <ArrowLink
@@ -298,7 +309,7 @@ export default function HomePage() {
             {opportunities.map((item, i) => (
               <Reveal as="li" key={item.id} delay={i * 100}>
                 <Card className="flex h-full flex-col">
-                  <p className="text-ember text-[11px] font-medium tracking-[0.16em] uppercase">
+                  <p className="text-accent text-[11px] font-medium tracking-[0.16em] uppercase">
                     {item.kind}
                   </p>
                   <h3 className="display mt-5 text-2xl font-semibold">

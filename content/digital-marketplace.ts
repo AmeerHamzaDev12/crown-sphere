@@ -1,5 +1,7 @@
 /** Digital Enterprise & Marketplace — source: "11 Digital Market Place .docx". */
 
+import type { SubProduct } from "./ventures";
+
 export const hero = {
   eyebrow: "Digital Enterprise & Marketplace",
   heading: "Everything You Need to Build Your Business Online",
@@ -117,3 +119,35 @@ export const finalCta = {
   },
   secondary: { label: "Contact Us", href: "/contact" },
 };
+
+/**
+ * Products built by SuperApp and operated under this venture.
+ * Sources: erp.superapp.pk, dms.superapp.pk (read September 2026).
+ */
+export const subProducts: SubProduct[] = [
+  {
+    name: "Trade ERP",
+    positioning:
+      "Counter-to-ledger software for wholesale and retail traders. Built around how cloth and textile businesses actually run, and extended to electronics, restaurants and bakery operations.",
+    features: [
+      "Touchscreen POS with barcode scanning, customer credit limits and printed or WhatsApp receipts",
+      "Rack-level warehouse stock, inward receipts and transfers between locations",
+      "Purchase orders, goods-received notes and supplier credit with NTN and STRN fields",
+      "Double-entry ledger that posts every sale as it happens, so profit, receivables and cash position are live rather than rebuilt at month-end",
+      "Keeps billing when the connection drops and syncs once it returns",
+    ],
+    poweredBy: "SuperApp",
+  },
+  {
+    name: "Distribution Engine",
+    positioning:
+      "Delivery operations for distributors, built so that the cash and stock at the end of a shift match the work that was actually done.",
+    features: [
+      "Route planning and dispatch with driver assignment and stop sequencing",
+      "Order capture with automatic pricing and stock deduction",
+      "Warehouse and in-vehicle inventory tracked in a single view",
+      "Driver settlement with cash reconciliation, empty-container counts and variance flags",
+    ],
+    poweredBy: "SuperApp",
+  },
+];

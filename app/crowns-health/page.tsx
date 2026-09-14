@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 import { Reveal } from "@/components/reveal";
+import { SubProducts } from "@/components/sub-products";
 import {
   Card,
   CheckList,
@@ -27,6 +28,7 @@ import {
   problem,
   services,
   tiers,
+  subProducts,
 } from "@/content/crowns-health";
 
 export const metadata: Metadata = {
@@ -107,7 +109,7 @@ export default function CrownsHealthPage() {
             {tiers.items.map((item, i) => (
               <Reveal as="li" key={item.tier} delay={i * 100}>
                 <Card className="h-full">
-                  <span className="text-ember text-[11px] font-medium tracking-[0.16em] uppercase">
+                  <span className="text-accent text-[11px] font-medium tracking-[0.16em] uppercase">
                     {item.tier}
                   </span>
                   <h3 className="display mt-5 text-xl font-semibold">
@@ -294,6 +296,18 @@ export default function CrownsHealthPage() {
           </div>
 
           <Disclaimer>{disclaimer}</Disclaimer>
+        </Container>
+      </Section>
+
+      {/* ------------------------------------------------------ sub-products */}
+      <Section tone="surface">
+        <Container>
+          <SubProducts
+            eyebrow="Built with SuperApp"
+            heading="The clinical software behind the service."
+            intro="Crowns Health runs on two partner-built platforms: one for the clinics we work with, one for reaching patients where no clinic is nearby."
+            items={subProducts}
+          />
         </Container>
       </Section>
 

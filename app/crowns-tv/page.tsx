@@ -71,8 +71,8 @@ export default function CrownsTvPage() {
           </ul>
 
           <Reveal className="mt-14 block">
-            <Card className="border-gold/25 bg-gold/[0.05]">
-              <h3 className="text-gold text-lg font-medium">
+            <Card className="border-accent/25 bg-accent/[0.05]">
+              <h3 className="text-accent text-lg font-medium">
                 {channelStatus.title}
               </h3>
               <p className="text-mist measure mt-3 text-sm leading-relaxed">

@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 
+import { BarChart, TrendChart } from "@/components/charts";
 import { PhoneMockup, StoreButtons } from "@/components/phone-mockup";
+import { VideoShowcase } from "@/components/video-showcase";
 import { Reveal } from "@/components/reveal";
 import {
   ArrowLink,
@@ -27,11 +29,13 @@ import {
   goal,
   hero,
   howItWorks,
+  lahoreFranchise,
   membership,
   offering,
   partnerNetwork,
   platforms,
   safety,
+  videoShowcase,
 } from "@/content/aurat-card";
 
 export const metadata: Metadata = {
@@ -174,7 +178,25 @@ export default function AuratCardPage() {
             </Reveal>
           </div>
 
-          <div className="mt-16 grid gap-5 lg:grid-cols-2">
+          {/* short explainer film */}
+          <Reveal className="mt-24 block">
+            <div className="grid gap-12 lg:grid-cols-[1fr_1.25fr] lg:items-center lg:gap-16">
+              <div>
+                <SectionHeading
+                  eyebrow={videoShowcase.eyebrow}
+                  title={videoShowcase.heading}
+                  intro={videoShowcase.body}
+                />
+              </div>
+              <VideoShowcase
+                src={videoShowcase.src}
+                poster={videoShowcase.poster}
+                duration={videoShowcase.duration}
+              />
+            </div>
+          </Reveal>
+
+          <div className="mt-24 grid gap-5 lg:grid-cols-2">
             {platforms.items.map((item, i) => (
               <Reveal key={item.title} delay={i * 110}>
                 <Card className="flex h-full flex-col">
@@ -256,8 +278,8 @@ export default function AuratCardPage() {
           </ul>
 
           <Reveal className="mt-10 block">
-            <Card className="border-gold/25 bg-gold/[0.06]">
-              <h3 className="text-gold text-lg font-medium">
+            <Card className="border-accent/25 bg-accent/[0.06]">
+              <h3 className="text-accent text-lg font-medium">
                 {becomePartner.taxNote.title}
               </h3>
               <p className="text-mist measure mt-3 text-sm leading-relaxed">
@@ -365,6 +387,140 @@ export default function AuratCardPage() {
               </div>
             </Card>
           </Reveal>
+        </Container>
+      </Section>
+
+      {/* ------------------------------------------------------- lahore franchise */}
+      <Section id="lahore-franchise">
+        <Container>
+          <Reveal>
+            <SectionHeading
+              eyebrow={lahoreFranchise.eyebrow}
+              title={lahoreFranchise.heading}
+              intro={lahoreFranchise.intro}
+            />
+            <div className="mt-8 flex flex-wrap items-center gap-3">
+              <StatusBadge status={lahoreFranchise.kind} />
+              <span className="border-accent/30 bg-accent/[0.06] text-accent rounded-full border px-3.5 py-1.5 text-xs">
+                {lahoreFranchise.fee.label}: {lahoreFranchise.fee.value}
+              </span>
+            </div>
+          </Reveal>
+
+          {/* the market */}
+          <div className="border-line mt-16 grid gap-px border-t md:grid-cols-3">
+            {lahoreFranchise.market.map((stat, i) => (
+              <Reveal key={stat.label} delay={i * 90} className="pt-8 md:pr-8">
+                <Stat value={stat.value} label={stat.label} />
+              </Reveal>
+            ))}
+          </div>
+
+          {/* charts */}
+          <Reveal className="mt-20 block">
+            <TrendChart
+              title={lahoreFranchise.members.title}
+              subtitle={lahoreFranchise.members.subtitle}
+              points={lahoreFranchise.members.points}
+              unit={lahoreFranchise.members.unit}
+            />
+          </Reveal>
+
+          <div className="mt-5 grid gap-5 md:grid-cols-2">
+            <Reveal>
+              <BarChart
+                title={lahoreFranchise.penetration.title}
+                subtitle={lahoreFranchise.penetration.subtitle}
+                points={lahoreFranchise.penetration.points}
+                unit={lahoreFranchise.penetration.unit}
+              />
+            </Reveal>
+            <Reveal delay={110}>
+              <BarChart
+                title={lahoreFranchise.merchants.title}
+                subtitle={lahoreFranchise.merchants.subtitle}
+                points={lahoreFranchise.merchants.points}
+                unit={lahoreFranchise.merchants.unit}
+              />
+            </Reveal>
+          </div>
+
+          {/* illustrative economics — figures and footnote never separated */}
+          <Reveal className="mt-5 block">
+            <Card className="border-accent/25 bg-accent/[0.04]">
+              <h3 className="text-accent text-lg font-medium">
+                {lahoreFranchise.economics.title}
+              </h3>
+              <p className="text-mist mt-2 text-sm leading-relaxed">
+                {lahoreFranchise.economics.caption}
+              </p>
+              <dl className="border-line-soft mt-7 grid gap-6 border-t pt-7 sm:grid-cols-3 lg:grid-cols-5">
+                {lahoreFranchise.economics.values.map((row) => (
+                  <div key={row.label}>
+                    <dt className="text-dim text-[11px] tracking-[0.14em] uppercase">
+                      {row.label}
+                    </dt>
+                    <dd className="display mt-2 text-2xl">{row.value}</dd>
+                  </div>
+                ))}
+              </dl>
+              <p className="text-dim border-line-soft mt-8 border-t pt-6 text-xs leading-relaxed">
+                {lahoreFranchise.economics.footnote}
+              </p>
+            </Card>
+          </Reveal>
+
+          {/* who does what */}
+          <div className="mt-20 grid gap-5 lg:grid-cols-2">
+            <Reveal>
+              <Card className="h-full">
+                <h3 className="text-lg font-medium text-white">
+                  {lahoreFranchise.model.franchisee.title}
+                </h3>
+                <CheckList
+                  items={lahoreFranchise.model.franchisee.items}
+                  className="mt-6"
+                />
+              </Card>
+            </Reveal>
+            <Reveal delay={110}>
+              <Card className="h-full">
+                <h3 className="text-lg font-medium text-white">
+                  {lahoreFranchise.model.cspl.title}
+                </h3>
+                <CheckList
+                  items={lahoreFranchise.model.cspl.items}
+                  className="mt-6"
+                />
+              </Card>
+            </Reveal>
+          </div>
+
+          {/* roadmap */}
+          <Reveal className="mt-20 block">
+            <h3 className="text-lg font-medium text-white">
+              {lahoreFranchise.roadmap.title}
+            </h3>
+            <div className="mt-6">
+              <Steps steps={lahoreFranchise.roadmap.steps} columns={6} />
+            </div>
+          </Reveal>
+
+          {/* strategic sectors */}
+          <Reveal className="mt-16 block">
+            <p className="text-dim text-[11px] tracking-[0.16em] uppercase">
+              {lahoreFranchise.sectors.title}
+            </p>
+            <PillList items={lahoreFranchise.sectors.items} className="mt-4" />
+          </Reveal>
+
+          <Disclaimer>{lahoreFranchise.disclaimer}</Disclaimer>
+
+          <div className="mt-10">
+            <CtaButton href={lahoreFranchise.cta.href}>
+              {lahoreFranchise.cta.label}
+            </CtaButton>
+          </div>
         </Container>
       </Section>
 

@@ -90,3 +90,131 @@ export const finalCta = {
 
 export const disclaimer =
   "The visa drop-box facility and related services are currently under development and subject to applicable approvals and authorizations. Availability of services will be announced once operational.";
+
+/* ---------------------------------------------------------------------------
+   Safar Sahulat — the consumer-facing travel service operated under this
+   venture.
+
+   Adapted from a demo build that carried SuperTravels branding and sample
+   data. All of that branding is replaced, and the demo's sample fares,
+   testimonials and download figures are deliberately NOT carried over — they
+   were placeholder numbers, not real ones. Anything still indicative is
+   labelled as such on the page.
+--------------------------------------------------------------------------- */
+
+export const safarSahulat = {
+  eyebrow: "Safar Sahulat",
+  heading: "Travel booked the way it *should be.*",
+  intro:
+    "Safar Sahulat is the travel service operated under Crowns Sphere: flights, hotels, Umrah and visa support handled by one team, on one platform, with the same document controls we apply to the visa drop box.",
+  status: "In Development",
+};
+
+export const services = {
+  eyebrow: "What Safar Sahulat covers",
+  heading: "Four services, one desk.",
+  items: [
+    {
+      title: "Flights",
+      body: "Search and compare departures across airlines, hold a fare while documents are confirmed, and book with support from a named person rather than a call queue.",
+      points: [
+        "Domestic and international departures",
+        "Fare comparison across carriers",
+        "Changes and cancellations handled by our team",
+      ],
+    },
+    {
+      title: "Hotels",
+      body: "Accommodation booked directly, including CSPL's own properties, with rooms confirmed before payment is taken.",
+      points: [
+        "Direct booking with partner hotels",
+        "CSPL properties including Amrri Hotel",
+        "Confirmation before payment",
+      ],
+    },
+    {
+      title: "Umrah packages",
+      body: "Visa, flights, accommodation close to the Haram, ground transfers and ziyarat arranged as one package rather than five separate bookings.",
+      points: [
+        "Visa processing and documentation",
+        "Accommodation within reach of the Haram",
+        "Airport and intercity transfers",
+        "Guided ziyarat where requested",
+      ],
+    },
+    {
+      title: "Visa services",
+      body: "Document preparation, appointment handling and submission through the drop-box workflow being built under this venture, with status visible at each step.",
+      points: [
+        "Document checklists before you travel to submit",
+        "Appointment scheduling",
+        "Tracked submission and collection",
+      ],
+    },
+  ],
+};
+
+export const routes = {
+  eyebrow: "Where we fly",
+  heading: "The corridors we are building around.",
+  intro:
+    "These are the routes Safar Sahulat is being set up to serve first. Live schedules and fares are shown at the time of booking — we do not publish indicative prices, because they are never the price you actually pay.",
+  from: ["Karachi", "Lahore", "Islamabad"],
+  to: [
+    "Jeddah",
+    "Madinah",
+    "Dubai",
+    "Doha",
+    "Istanbul",
+    "Kuala Lumpur",
+    "London",
+  ],
+  note: "Route availability depends on carrier schedules and applicable approvals.",
+};
+
+export const amrri = {
+  eyebrow: "CSPL properties",
+  heading: "Amrri Hotel",
+  body: "Amrri Hotel is booked directly through Safar Sahulat. Photography and a walkthrough video of the property are being produced and will replace the placeholders below.",
+  /**
+   * Every slot here is a labelled placeholder on purpose. Real Amrri Hotel
+   * photography and video are being shot and will be swapped in by hand —
+   * do not substitute stock imagery in the meantime.
+   */
+  media: [
+    { label: "Amrri Hotel — exterior", kind: "Photo" as const, note: "Hero image for the property" },
+    { label: "Amrri Hotel — guest room", kind: "Photo" as const, note: "Representative room type" },
+    { label: "Amrri Hotel — dining and common areas", kind: "Photo" as const, note: "Two to three images" },
+    { label: "Amrri Hotel — property walkthrough", kind: "Video" as const, note: "Short tour, 60-90 seconds" },
+  ],
+};
+
+export const whyBook = {
+  eyebrow: "Why book with us",
+  heading: "One operator, start to finish.",
+  items: [
+    {
+      title: "One team holds the file",
+      body: "Flights, hotel, visa and transfers sit with the same people, so nothing falls between two agents blaming each other.",
+    },
+    {
+      title: "The same controls as the drop box",
+      body: "Your documents move through the tracked, access-controlled workflow being built for the visa drop box — not a shoebox behind a counter.",
+    },
+    {
+      title: "Support in your time zone",
+      body: "A local team you can reach while you are travelling, not an overseas helpline that opens after you have landed.",
+    },
+    {
+      title: "Part of a larger ecosystem",
+      body: "Safar Sahulat sits inside Crowns Sphere, alongside the properties, platforms and partners we already operate.",
+    },
+  ],
+};
+
+export const appCallout = {
+  eyebrow: "On your phone",
+  heading: "Safar Sahulat, in your pocket.",
+  body: "Bookings, documents and trip status in one app. It is in development alongside the drop-box platform and will be announced when it is ready to use.",
+  status: "In Development",
+};

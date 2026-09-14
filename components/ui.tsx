@@ -1,4 +1,4 @@
-﻿import Link from "next/link";
+import Link from "next/link";
 import type { ComponentProps, ReactNode } from "react";
 
 import { StarField } from "./star-field";
@@ -10,6 +10,24 @@ import { StarField } from "./star-field";
 
 export function cx(...parts: Array<string | false | null | undefined>) {
   return parts.filter(Boolean).join(" ");
+}
+
+/**
+ * Renders *asterisked* spans as <em>, which globals.css styles as Georgia
+ * italic in lilac — the accent treatment from the reference build.
+ *
+ * Keeping the marker in the content strings means copy stays in plain .ts
+ * files (no JSX), so headings can be edited without touching components:
+ *
+ *   heading: "Different worlds. *Shared ambition.*"
+ */
+export function withAccent(value: ReactNode): ReactNode {
+  if (typeof value !== "string" || !value.includes("*")) return value;
+
+  return value.split(/\*([^*]+)\*/g).map((part, i) =>
+    // Odd indices are the captured groups, i.e. the emphasised text.
+    i % 2 === 1 ? <em key={i}>{part}</em> : part,
+  );
 }
 
 /* --------------------------------- layout -------------------------------- */
@@ -33,7 +51,8 @@ type Tone = "ink" | "surface" | "cream";
 const toneClass: Record<Tone, string> = {
   ink: "bg-ink text-white",
   surface: "bg-ink-2 text-white",
-  cream: "bg-cream text-ink",
+  // `tone-cream` switches accent <em> words to the deep purple — see globals.css
+  cream: "tone-cream bg-cream text-cream-ink",
 };
 
 export function Section({
@@ -80,7 +99,8 @@ export function Eyebrow({
         className,
       )}
     >
-      <span className="bg-royal inline-block h-1.5 w-1.5 rounded-full" />
+      {/* the reference's `.tiny-line`: a 25px rule before the label */}
+      <span className="bg-accent inline-block h-px w-[25px] shrink-0" />
       {children}
     </p>
   );
@@ -118,8 +138,8 @@ export function SectionHeading({
           {eyebrow}
         </Eyebrow>
       ) : null}
-      <h2 className="display mt-5 text-[clamp(2rem,4.4vw,3.5rem)] font-semibold">
-        {title}
+      <h2 className="display mt-5 text-[clamp(2.4rem,4vw,4rem)]">
+        {withAccent(title)}
       </h2>
       {intro ? (
         <p
@@ -160,13 +180,16 @@ export function ArrowIcon({ className }: { className?: string }) {
 
 type ButtonVariant = "primary" | "secondary" | "ghost" | "light";
 
+/* Our pill shape, the reference's colours. The border on `primary` matters:
+   #79207c against the near-black canvas is only ~2:1, so the button needs an
+   edge to read as a button. */
 const buttonVariant: Record<ButtonVariant, string> = {
   primary:
-    "bg-royal text-white hover:bg-royal-2 hover:shadow-[0_10px_34px_-10px_var(--color-royal)] hover:-translate-y-0.5",
+    "bg-royal text-white border border-[#9a5c9d] hover:bg-royal-2 hover:border-accent hover:shadow-[0_12px_36px_-12px_var(--color-royal)] hover:-translate-y-0.5",
   secondary:
-    "border border-white/15 bg-white/[0.04] text-white hover:border-white/30 hover:bg-white/[0.08] hover:-translate-y-0.5",
-  ghost: "text-white hover:text-royal",
-  light: "bg-ink text-white hover:bg-ink-2 hover:-translate-y-0.5",
+    "border border-[#7c627f] bg-white/[0.03] text-white hover:border-accent hover:bg-white/[0.07] hover:-translate-y-0.5",
+  ghost: "text-white hover:text-accent",
+  light: "bg-[#331633] text-white hover:bg-royal hover:-translate-y-0.5",
 };
 
 export function CtaButton({
@@ -233,7 +256,7 @@ export function ArrowLink({
         "group inline-flex items-center gap-2 text-sm font-medium transition-colors",
         tone === "cream"
           ? "text-ink hover:text-royal"
-          : "text-white hover:text-royal",
+          : "text-white hover:text-accent",
         className,
       )}
     >
@@ -274,7 +297,7 @@ export function Card({
   );
 }
 
-/** Card that lifts and warms its border on hover â€” use for linked cards. */
+/** Card that lifts and warms its border on hover — use for linked cards. */
 export function LinkCard({
   href,
   className,
@@ -288,7 +311,7 @@ export function LinkCard({
     <Link
       href={href}
       className={cx(
-        "rounded-card group bg-surface border-line hover:border-royal/40 hover:bg-surface-2 relative flex flex-col overflow-hidden border p-7 transition-all duration-300 hover:-translate-y-1 sm:p-8",
+        "rounded-card group bg-surface border-line hover:border-accent/40 hover:bg-surface-2 relative flex flex-col overflow-hidden border p-7 transition-all duration-300 hover:-translate-y-1 sm:p-8",
         className,
       )}
     >
@@ -304,23 +327,15 @@ export function StatusBadge({
   status: string;
   className?: string;
 }) {
-  const live = /operating|available|ready|live/i.test(status);
+  // The reference uses one neutral outlined pill for every status, rather than
+  // a traffic-light palette. Matching that keeps the page to the brand colours.
   return (
     <span
       className={cx(
-        "inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-[11px] font-medium tracking-[0.1em] uppercase",
-        live
-          ? "border-emerald-400/25 bg-emerald-400/10 text-emerald-300"
-          : "border-gold/25 bg-gold/10 text-gold",
+        "inline-flex items-center rounded-full border border-white/20 px-3 py-1.5 text-xs text-[#ded1df]",
         className,
       )}
     >
-      <span
-        className={cx(
-          "h-1.5 w-1.5 rounded-full",
-          live ? "bg-emerald-400" : "bg-gold",
-        )}
-      />
       {status}
     </span>
   );
@@ -345,7 +360,7 @@ export function CheckList({
             viewBox="0 0 16 16"
             fill="none"
             aria-hidden="true"
-            className="text-royal mt-1 h-4 w-4 shrink-0"
+            className="text-accent mt-1 h-4 w-4 shrink-0"
           >
             <path
               d="M3.5 8.5 6.5 11.5 12.5 5"
@@ -369,7 +384,7 @@ export function CheckList({
   );
 }
 
-/** Compact pill list â€” good for capability chips inside a card. */
+/** Compact pill list — good for capability chips inside a card. */
 export function PillList({
   items,
   tone = "ink",
@@ -455,7 +470,7 @@ export function Steps({
             tone === "cream" ? "outline-ink/10" : "outline-line",
           )}
         >
-          <span className="text-ember font-display text-sm font-semibold">
+          <span className="text-accent font-display text-sm">
             {String(i + 1).padStart(2, "0")}
           </span>
           <h3 className="mt-4 text-base font-medium">{step.title}</h3>
@@ -508,7 +523,7 @@ export function PageHero({
           className="display rise-in mt-6 max-w-4xl text-[clamp(2.5rem,6.5vw,5rem)] font-semibold"
           style={{ "--enter-stagger": "180ms" } as React.CSSProperties}
         >
-          {title}
+          {withAccent(title)}
         </h1>
         {intro ? (
           <p
@@ -560,8 +575,8 @@ export function CtaBand({
           />
           <div className="relative max-w-2xl">
             <Eyebrow>{eyebrow}</Eyebrow>
-            <h2 className="display mt-5 text-[clamp(2rem,5vw,3.75rem)] font-semibold">
-              {title}
+            <h2 className="display mt-5 text-[clamp(2rem,5vw,3.75rem)]">
+              {withAccent(title)}
             </h2>
             {body ? (
               <p className="text-mist mt-6 text-lg leading-relaxed text-pretty">

@@ -27,7 +27,7 @@ export function SiteFooter() {
                 <dd>
                   <a
                     href={`mailto:${company.email}`}
-                    className="hover:text-royal text-white transition-colors"
+                    className="hover:text-accent text-white transition-colors"
                   >
                     {company.email}
                   </a>
@@ -38,7 +38,7 @@ export function SiteFooter() {
                 <dd>
                   <a
                     href={`tel:${company.phoneHref}`}
-                    className="hover:text-royal text-white transition-colors"
+                    className="hover:text-accent text-white transition-colors"
                   >
                     {company.phone}
                   </a>

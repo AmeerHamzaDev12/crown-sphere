@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useActionState, useEffect, useRef } from "react";
 import { useFormStatus } from "react-dom";
@@ -10,7 +10,7 @@ import { ArrowIcon, cx } from "./ui";
 const initialState: ContactState = { status: "idle" };
 
 const fieldClass =
-  "w-full rounded-2xl border border-line bg-ink px-4 py-3.5 text-sm text-white placeholder:text-dim transition-colors focus:border-royal focus:outline-none";
+  "w-full rounded-2xl border border-line bg-ink px-4 py-3.5 text-sm text-white placeholder:text-dim transition-colors focus:border-accent focus:outline-none";
 
 function Field({
   label,
@@ -31,7 +31,7 @@ function Field({
     <div>
       <label htmlFor={name} className="mb-2 block text-sm text-white">
         {label}
-        {required ? <span className="text-ember"> *</span> : null}
+        {required ? <span className="text-warn"> *</span> : null}
       </label>
       <input
         id={name}
@@ -41,10 +41,10 @@ function Field({
         placeholder={placeholder}
         aria-invalid={error ? true : undefined}
         aria-describedby={error ? `${name}-error` : undefined}
-        className={cx(fieldClass, error && "border-ember")}
+        className={cx(fieldClass, error && "border-warn")}
       />
       {error ? (
-        <p id={`${name}-error`} className="text-ember mt-2 text-xs">
+        <p id={`${name}-error`} className="text-warn mt-2 text-xs">
           {error}
         </p>
       ) : null}
@@ -58,9 +58,9 @@ function SubmitButton() {
     <button
       type="submit"
       disabled={pending}
-      className="bg-royal hover:bg-royal-2 group inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-sm font-medium text-white transition-colors disabled:cursor-not-allowed disabled:opacity-60"
+      className="bg-royal border border-[#9a5c9d] hover:bg-royal-2 hover:border-accent group inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-sm font-medium text-white transition-colors disabled:cursor-not-allowed disabled:opacity-60"
     >
-      {pending ? "Sendingâ€¦" : "Submit"}
+      {pending ? "Sending…" : "Submit"}
       <ArrowIcon className="transition-transform duration-200 group-hover:translate-x-1" />
     </button>
   );
@@ -87,7 +87,7 @@ export function ContactForm() {
   if (state.status === "success") {
     return (
       <div className="rounded-card border-line bg-surface border p-10 text-center">
-        <div className="bg-royal/12 text-royal mx-auto flex h-14 w-14 items-center justify-center rounded-full">
+        <div className="bg-accent/12 text-accent mx-auto flex h-14 w-14 items-center justify-center rounded-full">
           <svg viewBox="0 0 20 20" fill="none" aria-hidden="true" className="h-6 w-6">
             <path
               d="M4.5 10.5 8.5 14.5 15.5 6"
@@ -111,7 +111,7 @@ export function ContactForm() {
       {state.status === "error" && state.message ? (
         <p
           role="alert"
-          className="border-ember/40 bg-ember/10 text-ember rounded-2xl border px-4 py-3 text-sm"
+          className="border-warn/40 bg-warn/10 text-warn rounded-2xl border px-4 py-3 text-sm"
         >
           {state.message}
         </p>
@@ -148,7 +148,7 @@ export function ContactForm() {
 
       <div>
         <label htmlFor="topic" className="mb-2 block text-sm text-white">
-          What are you contacting us about?<span className="text-ember"> *</span>
+          What are you contacting us about?<span className="text-warn"> *</span>
         </label>
         <select
           id="topic"
@@ -157,7 +157,7 @@ export function ContactForm() {
           ref={topicRef}
           defaultValue=""
           aria-invalid={state.errors?.topic ? true : undefined}
-          className={cx(fieldClass, state.errors?.topic && "border-ember")}
+          className={cx(fieldClass, state.errors?.topic && "border-warn")}
         >
           <option value="" disabled>
             Select a topic
@@ -169,13 +169,13 @@ export function ContactForm() {
           ))}
         </select>
         {state.errors?.topic ? (
-          <p className="text-ember mt-2 text-xs">{state.errors.topic}</p>
+          <p className="text-warn mt-2 text-xs">{state.errors.topic}</p>
         ) : null}
       </div>
 
       <div>
         <label htmlFor="message" className="mb-2 block text-sm text-white">
-          Message<span className="text-ember"> *</span>
+          Message<span className="text-warn"> *</span>
         </label>
         <textarea
           id="message"
@@ -184,14 +184,14 @@ export function ContactForm() {
           required
           placeholder="Tell us how we can help."
           aria-invalid={state.errors?.message ? true : undefined}
-          className={cx(fieldClass, "resize-y", state.errors?.message && "border-ember")}
+          className={cx(fieldClass, "resize-y", state.errors?.message && "border-warn")}
         />
         {state.errors?.message ? (
-          <p className="text-ember mt-2 text-xs">{state.errors.message}</p>
+          <p className="text-warn mt-2 text-xs">{state.errors.message}</p>
         ) : null}
       </div>
 
-      {/* Honeypot â€” hidden from people, tempting to bots. */}
+      {/* Honeypot — hidden from people, tempting to bots. */}
       <div aria-hidden="true" className="absolute -left-[9999px]">
         <label htmlFor="company_website">Do not fill this in</label>
         <input id="company_website" name="company_website" tabIndex={-1} autoComplete="off" />

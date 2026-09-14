@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -163,7 +163,7 @@ export function SiteHeader() {
                               onClick={closeAll}
                               className="hover:bg-surface-2 group flex items-center justify-between gap-4 rounded-2xl px-4 py-2.5 transition-colors"
                             >
-                              <span className="group-hover:text-royal text-[13.5px] text-white transition-colors">
+                              <span className="group-hover:text-accent text-[13.5px] text-white transition-colors">
                                 {child.label}
                               </span>
                               {child.note ? (
@@ -195,7 +195,7 @@ export function SiteHeader() {
 
               <Link
                 href={primaryCta.href}
-                className="bg-royal hover:bg-royal-2 hidden rounded-full px-5 py-2.5 text-[13.5px] font-medium text-white transition-colors sm:block"
+                className="bg-royal hover:bg-royal-2 hover:border-accent hidden rounded-full border border-[#9a5c9d] px-5 py-2.5 text-[13.5px] font-medium text-white transition-colors sm:block"
               >
                 {primaryCta.label}
               </Link>
@@ -277,7 +277,7 @@ export function SiteHeader() {
           <div className="mt-8 flex flex-col gap-3">
             <Link
               href={primaryCta.href}
-              className="bg-royal hover:bg-royal-2 rounded-full px-6 py-4 text-center text-sm font-medium text-white transition-colors"
+              className="bg-royal border border-[#9a5c9d] hover:bg-royal-2 rounded-full px-6 py-4 text-center text-sm font-medium text-white transition-colors"
             >
               {primaryCta.label}
             </Link>
