@@ -23,7 +23,7 @@ export type NavItem = { label: string; href: string; children?: NavChild[] };
 
 /** Ventures dropdown — mirrors the venture list in the content docs. */
 export const ventureNav: NavChild[] = [
-  { label: "Aurat Card", href: "/aurat-card", note: "Launch preparation" },
+  { label: "Aurat Card", href: "/aurat-card", note: "Coming soon" },
   { label: "Crowns Financial", href: "/crowns-financial", note: "Operating" },
   { label: "Crowns Education", href: "/crowns-education", note: "Operating" },
   { label: "Crowns Health", href: "/crowns-health", note: "In development" },
@@ -31,7 +31,7 @@ export const ventureNav: NavChild[] = [
   {
     label: "Digital Enterprise & Marketplace",
     href: "/digital-marketplace",
-    note: "Launching soon",
+    note: "Coming soon",
   },
   {
     label: "Travel & Visa Drop Box",

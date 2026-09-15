@@ -11,9 +11,9 @@ export const hero = {
 export const goal = {
   eyebrow: "Our goal",
   heading:
-    "To build a trusted digital platform connecting every woman of the country with benefits, services, opportunities and a growing network of partners across Pakistan.",
+    "To build a trusted digital platform connecting every woman of the country with discounts, privileges, access and a growing network of partners across Pakistan.",
   stats: [
-    { value: "1 Million", label: "Verified women — first year target" },
+    { value: "10 Million", label: "Verified women — first year target" },
     { value: "9 Sectors", label: "Partners across multiple sectors" },
     { value: "Q4 2026", label: "Target launch" },
   ],
@@ -243,7 +243,10 @@ export const franchise = {
 export const finalCta = {
   heading: "Join Aurat Card",
   body: "Become a member, join the partner network, or bring Aurat Card to your city.",
-  primary: { label: "Join Now", href: "/contact?topic=Aurat%20Card" },
+  // Scrolls to the app/web-portal section (id="app" on that <Section> in
+  // app/aurat-card/page.tsx) rather than the contact form — "Join Now" here
+  // is the download/registration action, so it goes straight to the app.
+  primary: { label: "Join Now", href: "#app" },
   secondary: { label: "Become a Partner", href: "/partnerships" },
 };
 

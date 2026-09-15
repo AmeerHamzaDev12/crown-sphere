@@ -7,9 +7,8 @@ export type VentureStatus =
   | "Operating"
   | "Operating / Expanding"
   | "In Development"
-  | "Building / Launch Preparation"
-  | "Coming Soon"
-  | "Launching Soon";
+  | "Building / Coming Soon"
+  | "Coming Soon";
 
 /**
  * A product built by our technology partner and operated under a venture.
@@ -50,9 +49,9 @@ export const ventures: Venture[] = [
     href: "/aurat-card",
     summary:
       "Women's membership, benefits and empowerment platform — a digital-first membership combining structured discounts, one-touch safety, subsidised healthcare and a marketplace for women-led businesses.",
-    status: "Building / Launch Preparation",
+    status: "Building / Coming Soon",
     points: [
-      "Target: 1 million verified women",
+      "Target: 10 million verified women",
       "Established partner network across multiple sectors",
       "App and web portal",
     ],
@@ -131,7 +130,7 @@ export const ventures: Venture[] = [
     href: "/digital-marketplace",
     summary:
       "A one-stop digital platform helping businesses establish, promote and operate online.",
-    status: "Launching Soon",
+    status: "Coming Soon",
     points: [
       "Domain, website and digital presence",
       "Payment gateways and online transactions",

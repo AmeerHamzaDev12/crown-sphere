@@ -6,7 +6,7 @@ export const hero = {
   eyebrow: "Digital Enterprise & Marketplace",
   heading: "Everything You Need to Build Your Business Online",
   body: "A digital business facilitation platform helping businesses establish, operate and grow their online presence through connected digital services and marketplace capabilities.",
-  status: "Launching Soon",
+  status: "Coming Soon",
   primary: { label: "Explore the Marketplace", href: "#marketplace" },
   secondary: {
     label: "Build Your Business With Us",

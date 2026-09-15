@@ -1,8 +1,11 @@
 import Image from "next/image";
 
+import { AuratCardSlider } from "@/components/aurat-card-slider";
 import { EcosystemOrbit } from "@/components/ecosystem-orbit";
+import { FeatureIcon } from "@/components/feature-icons";
 import { Marquee } from "@/components/marquee";
 import { PhoneMockup } from "@/components/phone-mockup";
+import { PillarGrid } from "@/components/pillar-grid";
 import { Reveal } from "@/components/reveal";
 import { StarField } from "@/components/star-field";
 import {
@@ -16,16 +19,15 @@ import {
   PillList,
   Section,
   SectionHeading,
-  Stat,
   StatusBadge,
   withAccent,
 } from "@/components/ui";
 import {
   auratCardFeature,
+  auratSlider,
   crownsTvStrip,
   finalCta,
   hero,
-  heroStats,
   newsIntro,
   opportunitiesIntro,
   partners,
@@ -105,13 +107,16 @@ export default function HomePage() {
             </CtaButton>
           </div>
 
-          {/* stat strip */}
-          <div className="border-line mt-20 grid gap-px border-t md:mt-28 md:grid-cols-4">
-            {heroStats.map((stat, i) => (
-              <Reveal key={stat.label} delay={i * 80} className="pt-8 md:pr-8">
-                <Stat value={stat.value} label={stat.label} />
-              </Reveal>
-            ))}
+          {/* Aurat Card slider — replaces the old four-figure stat strip */}
+          <div
+            className="rise-in mt-20 md:mt-24"
+            style={{ "--enter-stagger": "540ms" } as React.CSSProperties}
+          >
+            <AuratCardSlider
+              slides={auratSlider.slides}
+              video={auratSlider.video}
+              badge={auratSlider.badge}
+            />
           </div>
         </Container>
       </section>
@@ -139,23 +144,14 @@ export default function HomePage() {
               <p className="text-mist text-lg leading-relaxed text-pretty">
                 {whoWeAre.body}
               </p>
-              <dl className="mt-12 grid gap-px sm:grid-cols-2">
-                {whoWeAre.pillars.map((pillar) => (
-                  <div
-                    key={pillar.title}
-                    className="outline-line bg-ink-2 p-6 outline"
-                  >
-                    <dt className="text-base font-medium text-white">
-                      {pillar.title}
-                    </dt>
-                    <dd className="text-mist mt-2.5 text-sm leading-relaxed">
-                      {pillar.body}
-                    </dd>
-                  </div>
-                ))}
-              </dl>
             </Reveal>
           </div>
+
+          {/* full-width row of pillar tiles, staggered */}
+          <PillarGrid
+            items={whoWeAre.pillars}
+            className="mt-16 lg:mt-20 lg:grid-cols-4"
+          />
         </Container>
       </Section>
 
@@ -170,7 +166,6 @@ export default function HomePage() {
           <Reveal>
             <EcosystemOrbit
               eyebrow={venturesIntro.eyebrow}
-              heading={withAccent(venturesIntro.heading)}
               intro={venturesIntro.intro}
             />
           </Reveal>
@@ -223,9 +218,22 @@ export default function HomePage() {
                 title={auratCardFeature.heading}
                 intro={auratCardFeature.body}
               />
-              <p className="text-ink/70 mt-6 text-sm leading-relaxed">
+              <p className="text-cream-muted mt-6 text-sm leading-relaxed">
                 {auratCardFeature.access}
               </p>
+
+              {/* where members can use it */}
+              <ul className="mt-7 flex flex-wrap gap-2.5">
+                {auratCardFeature.channels.map((label) => (
+                  <li
+                    key={label}
+                    className="border-royal/20 bg-royal/[0.06] text-cream-ink rounded-full border px-3.5 py-1.5 text-xs"
+                  >
+                    {label}
+                  </li>
+                ))}
+              </ul>
+
               <div className="mt-10 flex flex-wrap items-center gap-3">
                 <CtaButton href={auratCardFeature.primary.href} variant="light">
                   {auratCardFeature.primary.label}
@@ -241,29 +249,55 @@ export default function HomePage() {
             </Reveal>
 
             <Reveal delay={140}>
-              <div className="border-ink/12 bg-ink text-white rounded-card-lg relative overflow-hidden border p-9 sm:p-11">
+              <div className="rounded-card-lg relative overflow-hidden bg-[linear-gradient(155deg,#241829,#140e17_60%)] p-7 text-white shadow-[0_40px_90px_-40px_rgba(61,20,64,0.85)] ring-1 ring-white/10 sm:p-10">
                 <StarField density={0.7} parallax={0.14} />
-                <div className="relative grid gap-10 sm:grid-cols-[1fr_auto] sm:items-center">
+                {/* soft plum glow sitting behind the handset */}
+                <div
+                  aria-hidden="true"
+                  className="bg-royal/40 pointer-events-none absolute top-10 -right-10 h-72 w-72 rounded-full blur-3xl"
+                />
+
+                <div className="relative grid gap-8 sm:grid-cols-[1fr_auto] sm:items-center">
                   <div>
-                    <p className="text-mist text-[11px] font-medium tracking-[0.18em] uppercase">
+                    <p className="text-accent flex items-center gap-2.5 text-[11px] font-medium tracking-[0.18em] uppercase">
+                      <span className="bg-accent inline-block h-px w-[25px]" />
                       Our ambition
                     </p>
-                    <p className="display mt-5 text-[clamp(2.25rem,5vw,3.5rem)] font-semibold">
-                      1 Million
+                    <p className="display mt-5 bg-gradient-to-br from-white via-white to-[#d7a3de] bg-clip-text text-[clamp(2.75rem,6vw,4.25rem)] leading-none text-transparent">
+                      {auratCardFeature.ambitionFigure}
                     </p>
                     <p className="text-mist mt-3 text-sm leading-relaxed">
-                      verified women across Pakistan
+                      {auratCardFeature.ambitionLabel}
                     </p>
+
+                    <dl className="mt-8 flex flex-wrap gap-2.5">
+                      {auratCardFeature.facts.map((fact) => (
+                        <div
+                          key={fact.label}
+                          className="rounded-2xl bg-white/[0.05] px-4 py-3 ring-1 ring-white/10"
+                        >
+                          <dt className="text-dim text-[10px] tracking-[0.14em] uppercase">
+                            {fact.label}
+                          </dt>
+                          <dd className="display mt-1 text-xl">{fact.value}</dd>
+                        </div>
+                      ))}
+                    </dl>
                   </div>
-                  <PhoneMockup width={196} className="sm:mx-0" />
+                  <PhoneMockup width={190} className="sm:mx-0" />
                 </div>
-                <ul className="border-line relative mt-9 grid gap-px border-t pt-px sm:grid-cols-2">
+
+                {/* benefits — padded icon tiles instead of a hairline table */}
+                <ul className="relative mt-9 grid gap-3 sm:grid-cols-2">
                   {auratCardFeature.highlights.map((item) => (
                     <li
                       key={item}
-                      className="outline-line bg-ink py-5 text-sm text-white outline sm:pr-5"
+                      className="group flex items-center gap-3.5 rounded-2xl bg-white/[0.04] px-4 py-3.5 ring-1 ring-white/10 transition-colors hover:bg-white/[0.08] hover:ring-[#d7a3de]/40"
                     >
-                      {item}
+                      <span className="from-royal flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br to-[#3d1440] text-white ring-1 ring-[#d7a3de]/25 transition-transform duration-300 group-hover:scale-105">
+                        <FeatureIcon name={item} className="h-5 w-5" />
+                      </span>
+                      <span className="text-sm font-medium text-white">{item}</span>
                     </li>
                   ))}
                 </ul>
@@ -279,8 +313,10 @@ export default function HomePage() {
                   tone="cream"
                   eyebrow={partners.eyebrow}
                   title={
+                    // withAccent must receive the raw string — wrapping it in
+                    // a <span> first is what printed the asterisks literally.
                     <span className="text-[clamp(1.6rem,3vw,2.5rem)]">
-                      {partners.heading}
+                      {withAccent(partners.heading)}
                     </span>
                   }
                 />
@@ -289,7 +325,12 @@ export default function HomePage() {
                 </ArrowLink>
               </div>
             </Reveal>
-            <Marquee items={partners.logos} tone="cream" className="mt-12" />
+            <Marquee
+              items={partners.logos}
+              tone="cream"
+              icons
+              className="mt-12"
+            />
           </div>
         </Container>
       </Section>

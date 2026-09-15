@@ -337,6 +337,50 @@ em {
 }
 
 /* ---------------------------------------------------------------------------
+   Aurat Card slider (components/aurat-card-slider.tsx)
+
+   The progress bar animates `transform`, not `width`, so it stays on the
+   compositor. Its animationend is what advances the slide.
+--------------------------------------------------------------------------- */
+@keyframes slider-progress {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.slider-progress {
+  animation: slider-progress var(--slide-ms, 6500ms) linear forwards;
+}
+
+.slider-paused .slider-progress {
+  animation-play-state: paused;
+}
+
+/* slow camera move on the video between slides */
+.slider-camera {
+  transition: transform 1.8s cubic-bezier(0.22, 0.61, 0.36, 1);
+  will-change: transform;
+}
+
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.slide-in {
+  animation: slide-in 0.75s var(--ease-out-soft) both;
+}
+
+/* ---------------------------------------------------------------------------
    Preloader (components/preloader.tsx)
 
    The overlay must never strand the site behind it, so hiding it does not
@@ -580,6 +624,10 @@ em {
   /* Keep the loader's own fade-out working — the global reduced-motion rule
      above shortens every animation to ~0s, which is what we want here: the
      splash clears instantly instead of holding the page. */
+  .slider-camera {
+    transition: none;
+    transform: none !important;
+  }
   .ray-blink,
   .glow-pulse,
   .float-slow,

@@ -85,7 +85,7 @@ export default function PartnershipsPage() {
             />
           </Reveal>
         </Container>
-        <Marquee items={sectors.logos} tone="cream" className="mt-14" />
+        <Marquee items={sectors.logos} tone="cream" icons className="mt-14" />
       </Section>
 
       {/* ------------------------------------------------------------ categories */}

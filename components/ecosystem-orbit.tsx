@@ -37,11 +37,9 @@ const ROTATION_MS = 60000; // one full 360° turn every 60s — tune to taste
 
 export function EcosystemOrbit({
   eyebrow,
-  heading,
   intro,
 }: {
   eyebrow: string;
-  heading: React.ReactNode;
   intro: string;
 }) {
   const [selected, setSelected] = useState(0);
@@ -88,9 +86,20 @@ export function EcosystemOrbit({
   const active = ventures[selected];
 
   return (
-    <div className="grid gap-14 lg:grid-cols-[1.2fr_1fr] lg:items-center lg:gap-[7%]">
+    <div>
+      {/* Section label sits at the section's left edge, above both columns,
+          rather than inside the right-hand column. */}
+      <Eyebrow>{eyebrow}</Eyebrow>
+
+      {/* items-start (not center): the ring and the right-hand copy share one
+          top line. Centering against the taller right column is what pushed
+          the ring down. */}
+      <div className="mt-12 grid gap-14 lg:grid-cols-[1.2fr_1fr] lg:items-start lg:gap-[7%]">
       {/* ----------------------------------------------------------- the ring */}
       <div
+        // The top node's badge sits ~5% below the ring box's edge; pulling the
+        // box up by that amount lines the badge up with the paragraph's first line.
+        className="lg:-mt-[5%]"
         onMouseEnter={() => setPaused(true)}
         onMouseLeave={() => setPaused(false)}
         onFocusCapture={() => setPaused(true)}
@@ -185,9 +194,7 @@ export function EcosystemOrbit({
 
       {/* ------------------------------------------------------- the selection */}
       <div>
-        <Eyebrow>{eyebrow}</Eyebrow>
-        <h2 className="display mt-5 text-[clamp(2.4rem,4vw,4rem)]">{heading}</h2>
-        <p className="text-mist mt-6 max-w-md leading-relaxed">{intro}</p>
+        <p className="text-mist max-w-md text-lg leading-relaxed">{intro}</p>
         <p className="text-accent mt-4 text-sm">
           An automatic journey through our ventures. Explore any time.
         </p>
@@ -271,6 +278,7 @@ export function EcosystemOrbit({
             </div>
           </div>
         </div>
+      </div>
       </div>
     </div>
   );

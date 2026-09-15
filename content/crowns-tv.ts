@@ -91,7 +91,7 @@ export const categories = {
 };
 
 export const channelStatus = {
-  title: "Launching — Content Being Developed",
+  title: "Coming Soon — Content Being Developed",
   body: "Crowns TV is currently being developed, with content publishing beginning as the CSPL digital ecosystem launches.",
 };
 

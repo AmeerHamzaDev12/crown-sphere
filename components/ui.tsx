@@ -443,6 +443,17 @@ export function Stat({
 
 export type Step = { title: string; body?: string };
 
+/**
+ * Numbered step sequence. Each step is its own rounded card with a raised
+ * gradient number badge — the "connected path" read comes from a hairline
+ * rule trailing out of each badge, which continues in the gutter between
+ * cards on wide rows and simply stops at a wrap point (so it never has to
+ * know the grid's row breaks).
+ *
+ * Used by every step/process/roadmap list site-wide (financial, marketing,
+ * health, marketplace, about, and twice on the Aurat Card page) — one
+ * upgrade here is consistent everywhere it appears.
+ */
 export function Steps({
   steps,
   tone = "ink",
@@ -458,27 +469,51 @@ export function Steps({
     6: "sm:grid-cols-2 lg:grid-cols-3",
   }[columns];
 
+  const cream = tone === "cream";
+
   return (
-    <ol className={cx("grid gap-px", cols)}>
+    <ol className={cx("grid gap-4 sm:gap-5", cols)}>
       {steps.map((step, i) => (
         <li
           key={step.title}
           className={cx(
-            "relative p-6 sm:p-7",
-            tone === "cream" ? "bg-cream" : "bg-ink",
-            "outline outline-offset-0",
-            tone === "cream" ? "outline-ink/10" : "outline-line",
+            "group relative rounded-2xl border p-6 transition-all duration-300 sm:p-7",
+            cream
+              ? "border-ink/10 bg-white/50 hover:border-royal/25 hover:bg-white/80"
+              : "border-line bg-surface hover:border-accent/35 hover:bg-surface-2",
+            "hover:-translate-y-1 hover:shadow-[0_20px_45px_-25px_rgba(121,32,124,0.55)]",
           )}
         >
-          <span className="text-accent font-display text-sm">
-            {String(i + 1).padStart(2, "0")}
-          </span>
-          <h3 className="mt-4 text-base font-medium">{step.title}</h3>
+          {/* number badge — a hairline rule trails out of it toward the next
+              card; on the last item in each row it simply fades into nothing */}
+          <div className="flex items-center gap-3">
+            <span
+              className={cx(
+                "font-accent flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-[15px] italic ring-1",
+                cream
+                  ? "bg-royal/10 text-royal ring-royal/25"
+                  : "bg-accent/10 text-accent ring-accent/30",
+              )}
+            >
+              {i + 1}
+            </span>
+            <span
+              aria-hidden="true"
+              className={cx(
+                "h-px flex-1 bg-gradient-to-r",
+                cream
+                  ? "from-royal/25 to-transparent"
+                  : "from-accent/30 to-transparent",
+              )}
+            />
+          </div>
+
+          <h3 className="mt-5 text-base font-medium">{step.title}</h3>
           {step.body ? (
             <p
               className={cx(
                 "mt-2.5 text-sm leading-relaxed",
-                tone === "cream" ? "text-ink/65" : "text-mist",
+                cream ? "text-ink/65" : "text-mist",
               )}
             >
               {step.body}

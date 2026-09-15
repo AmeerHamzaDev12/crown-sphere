@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 
 import { BarChart, TrendChart } from "@/components/charts";
 import { PhoneMockup, StoreButtons } from "@/components/phone-mockup";
-import { VideoShowcase } from "@/components/video-showcase";
 import { Reveal } from "@/components/reveal";
+import { SectorIcon } from "@/components/sector-icon";
+import { VideoShowcase } from "@/components/video-showcase";
 import {
   ArrowLink,
   Card,
@@ -149,7 +150,7 @@ export default function AuratCardPage() {
       </Section>
 
       {/* ------------------------------------------------------------- platforms */}
-      <Section>
+      <Section id="app">
         <Container>
           <Reveal>
             <SectionHeading
@@ -231,18 +232,27 @@ export default function AuratCardPage() {
               intro={partnerNetwork.intro}
             />
           </Reveal>
-          <ul className="border-ink/12 mt-14 grid gap-px border-t sm:grid-cols-2 lg:grid-cols-3">
+          {/* Icon tiles — deliberately not the Steps look: no numbering, a
+              white raised card with a filled icon roundel instead of a
+              hairline outline grid, so the two grid styles on this page
+              read as two different things rather than the same box twice. */}
+          <ul className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {partnerNetwork.sectors.map((sector, i) => (
               <Reveal
                 as="li"
                 key={sector.title}
                 delay={(i % 3) * 70}
-                className="outline-ink/10 bg-cream p-7 outline"
+                className="group flex items-start gap-4 rounded-2xl bg-white/70 p-6 shadow-[0_1px_2px_rgba(39,24,42,0.06)] ring-1 ring-[#271829]/8 transition-all duration-300 hover:-translate-y-1 hover:bg-white hover:shadow-[0_20px_40px_-24px_rgba(121,32,124,0.35)]"
               >
-                <h3 className="text-base font-medium">{sector.title}</h3>
-                <p className="text-ink/65 mt-2.5 text-sm leading-relaxed">
-                  {sector.body}
-                </p>
+                <span className="from-royal flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-gradient-to-br to-[#3d1440] text-white shadow-sm transition-transform duration-300 group-hover:scale-105">
+                  <SectorIcon name={sector.title} className="h-5 w-5" />
+                </span>
+                <div>
+                  <h3 className="text-base font-medium">{sector.title}</h3>
+                  <p className="text-ink/65 mt-1.5 text-sm leading-relaxed">
+                    {sector.body}
+                  </p>
+                </div>
               </Reveal>
             ))}
           </ul>

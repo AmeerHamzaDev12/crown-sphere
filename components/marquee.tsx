@@ -1,3 +1,4 @@
+import { SectorIcon, hasSectorIcon } from "./sector-icon";
 import { cx } from "./ui";
 
 /**
@@ -10,6 +11,7 @@ export function Marquee({
   items,
   speed = 42,
   tone = "ink",
+  icons = false,
   className,
 }: {
   items: readonly string[];
@@ -17,6 +19,8 @@ export function Marquee({
   speed?: number;
   /** `band` is the reference build's solid purple ticker. */
   tone?: "ink" | "cream" | "band";
+  /** Show the matching sector icon before each label (see sector-icon.tsx). */
+  icons?: boolean;
   className?: string;
 }) {
   const doubled = [...items, ...items];
@@ -49,14 +53,28 @@ export function Marquee({
               tone === "ink" && "text-mist/60",
             )}
           >
-            <span
-              className={cx(
-                tone === "band"
-                  ? "text-xs tracking-[0.16em] uppercase"
-                  : "font-display text-xl font-medium tracking-[-0.02em] sm:text-2xl",
-              )}
-            >
-              {item}
+            <span className="flex items-center gap-3.5">
+              {icons && hasSectorIcon(item) ? (
+                <span
+                  className={cx(
+                    "flex h-11 w-11 shrink-0 items-center justify-center rounded-full border",
+                    tone === "cream"
+                      ? "border-royal/20 bg-royal/[0.07] text-royal"
+                      : "border-accent/25 bg-accent/[0.08] text-accent",
+                  )}
+                >
+                  <SectorIcon name={item} className="h-5 w-5" />
+                </span>
+              ) : null}
+              <span
+                className={cx(
+                  tone === "band"
+                    ? "text-xs tracking-[0.16em] uppercase"
+                    : "font-display text-xl font-medium tracking-[-0.02em] sm:text-2xl",
+                )}
+              >
+                {item}
+              </span>
             </span>
             <span
               aria-hidden="true"
