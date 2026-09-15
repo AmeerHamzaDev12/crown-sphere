@@ -270,6 +270,7 @@ export const subProducts: SubProduct[] = [
   },
   {
     name: "EZShifa",
+    logo: "/EZShifa-logo.png",
     positioning:
       "Telehealth delivered through kiosks and connected devices, reaching patients in places where the nearest clinic is far away.",
     features: [
@@ -282,3 +283,29 @@ export const subProducts: SubProduct[] = [
     poweredBy: "SuperApp",
   },
 ];
+
+/**
+ * Desktop dashboard mockup for Klinic (components/desktop-mockup.tsx),
+ * modelled on the real klinic.superapp.pk product dashboard — its stat row
+ * (Patients / Appointments / Revenue), performance chart and "Today" panel —
+ * reskinned into this site's own dark chrome. Figures are illustrative.
+ */
+export const klinicDashboard = {
+  appName: "Klinic",
+  url: "app.crownshealth.pk/klinic",
+  tabs: ["Dashboard", "Patients", "Appointments", "Billing", "Reports"],
+  stats: [
+    { label: "Patients", value: "12.8k" },
+    { label: "Appointments", value: "438" },
+    { label: "Revenue", value: "$89k" },
+    { label: "Consultations Today", value: "26" },
+  ],
+  chartLabel: "Clinic performance",
+  chartPoints: [52, 68, 58, 73, 85, 96, 88],
+  tableTitle: "Today",
+  rows: [
+    { name: "Lab Orders", meta: "Ordered today", amount: "18" },
+    { name: "Prescriptions", meta: "Issued today", amount: "34" },
+    { name: "New Patients", meta: "Registered today", amount: "7" },
+  ],
+};

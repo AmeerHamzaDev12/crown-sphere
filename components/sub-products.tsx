@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 import type { SubProduct } from "@/content/ventures";
 import { Reveal } from "./reveal";
 import { Card, CheckList, Eyebrow, cx } from "./ui";
@@ -37,7 +39,25 @@ export function SubProducts({
         {items.map((item, i) => (
           <Reveal as="li" key={item.name} delay={(i % 2) * 100}>
             <Card className="flex h-full flex-col">
-              <h3 className="display text-2xl">{item.name}</h3>
+              <div className="flex items-center gap-3.5">
+                {item.logo ? (
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white p-1.5 shadow-sm">
+                    <Image
+                      src={item.logo}
+                      alt=""
+                      width={80}
+                      height={80}
+                      // See client-showcase.tsx — a logo file supplied as-is
+                      // can be an unusual format/size the built-in optimizer
+                      // hangs on rather than just being slow, so real client
+                      // and partner logos are served unoptimized throughout.
+                      unoptimized
+                      className="h-full w-full object-contain"
+                    />
+                  </span>
+                ) : null}
+                <h3 className="display text-2xl">{item.name}</h3>
+              </div>
               <p className="text-mist mt-4 text-sm leading-relaxed">
                 {item.positioning}
               </p>

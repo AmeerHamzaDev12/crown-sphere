@@ -88,6 +88,7 @@ export default function CrownsEducationPage() {
           <Reveal className="mt-10 block" delay={120}>
             <DesktopMockup
               appName={erpDashboard.appName}
+              url={erpDashboard.url}
               tabs={erpDashboard.tabs}
               stats={erpDashboard.stats}
               chartLabel={erpDashboard.chartLabel}

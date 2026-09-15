@@ -79,6 +79,7 @@ export const pathways = {
  */
 export const erpDashboard = {
   appName: "Campus ERP",
+  url: "campus.crownseducation.pk/dashboard",
   tabs: ["Dashboard", "Students", "Fees", "Attendance", "Reports"],
   stats: [
     { label: "Students Enrolled", value: "3,240", delta: "+4.1%" },

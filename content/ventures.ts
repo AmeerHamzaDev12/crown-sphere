@@ -24,6 +24,8 @@ export type SubProduct = {
   features: string[];
   /** Shown as a small text credit under each card. */
   poweredBy: string;
+  /** Public path to a real logo file, shown beside the name. Optional. */
+  logo?: string;
 };
 
 export type Venture = {

@@ -15,7 +15,13 @@ import { cx } from "./ui";
 --------------------------------------------------------------------------- */
 
 export type DashboardStat = { label: string; value: string; delta?: string };
-export type DashboardRow = { name: string; meta: string; amount: string; status: string };
+export type DashboardRow = {
+  name: string;
+  meta: string;
+  amount: string;
+  /** Omit for a plain metric row with no status pill. */
+  status?: string;
+};
 
 function ChromeDots() {
   return (
@@ -135,16 +141,18 @@ function DashboardScreen({
                   <span className="text-mist shrink-0 tabular-nums">
                     {row.amount}
                   </span>
-                  <span
-                    className={cx(
-                      "shrink-0 rounded-full px-2 py-0.5 text-[9px] tracking-wide uppercase",
-                      row.status === "Paid" || row.status === "Enrolled"
-                        ? "bg-emerald-400/15 text-emerald-300"
-                        : "bg-white/10 text-dim",
-                    )}
-                  >
-                    {row.status}
-                  </span>
+                  {row.status ? (
+                    <span
+                      className={cx(
+                        "shrink-0 rounded-full px-2 py-0.5 text-[9px] tracking-wide uppercase",
+                        row.status === "Paid" || row.status === "Enrolled"
+                          ? "bg-emerald-400/15 text-emerald-300"
+                          : "bg-white/10 text-dim",
+                      )}
+                    >
+                      {row.status}
+                    </span>
+                  ) : null}
                 </div>
               ))}
             </div>
@@ -157,6 +165,7 @@ function DashboardScreen({
 
 export function DesktopMockup({
   appName,
+  url,
   tabs,
   stats,
   chartLabel,
@@ -166,6 +175,8 @@ export function DesktopMockup({
   className,
 }: {
   appName: string;
+  /** Shown in the fake browser address bar. */
+  url: string;
   tabs: readonly string[];
   stats: readonly DashboardStat[];
   chartLabel: string;
@@ -184,7 +195,7 @@ export function DesktopMockup({
         <div className="border-line-soft flex items-center gap-3 border-b bg-[#1a1220] px-4 py-2.5">
           <ChromeDots />
           <div className="border-line-soft flex-1 truncate rounded-md border bg-black/20 px-3 py-1 text-center text-[10px] text-[#8a708e]">
-            campus.crownseducation.pk/dashboard
+            {url}
           </div>
         </div>
         <div className="aspect-[16/10]">

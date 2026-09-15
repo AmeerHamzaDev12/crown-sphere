@@ -93,6 +93,50 @@ const paths: Record<string, ReactNode> = {
       <path d="M17 4h3.5L17 7" />
     </>
   ),
+
+  /* ----- Crowns Health services (content/crowns-health.ts `services.items`) ----- */
+  // heartbeat / pulse line
+  "Chronic Disease Management": (
+    <>
+      <path d="M20.5 12h-3.2l-1.8-4-2.6 8-2-5.4L9.5 12H3.5" />
+      <path d="M6 12a4 4 0 0 1 4-6c1 0 1.7.4 2 .8.3-.4 1-.8 2-.8a4 4 0 0 1 4 6" />
+    </>
+  ),
+  // a gentle bloom
+  "Women's Health": (
+    <>
+      <path d="M12 13a3.2 3.2 0 1 0 0-6.4 3.2 3.2 0 0 0 0 6.4Z" />
+      <path d="M12 6.6c0-1.8-1-3.1-1-3.1s-1 1.3-1 3.1M12 6.6c0-1.8 1-3.1 1-3.1s1 1.3 1 3.1M8.9 8.4c-1.7-.6-3.3 0-3.3 0s.3 1.7 2 2.3M15.1 8.4c1.7-.6 3.3 0 3.3 0s-.3 1.7-2 2.3M8.9 10.9c-1.7.6-2.6 2.1-2.6 2.1s1.4.9 3.1.3M15.1 10.9c1.7.6 2.6 2.1 2.6 2.1s-1.4.9-3.1.3" />
+      <path d="M12 13v7.5M9.2 20.5h5.6" />
+    </>
+  ),
+  // mind / brain
+  "Mental Health & Psychiatry": (
+    <>
+      <path d="M9.5 4.2A3 3 0 0 0 6 7v.3A3 3 0 0 0 4 10a3 3 0 0 0 1.3 2.5 3 3 0 0 0 2.6 4.4h.6" />
+      <path d="M14.5 4.2A3 3 0 0 1 18 7v.3A3 3 0 0 1 20 10a3 3 0 0 1-1.3 2.5 3 3 0 0 1-2.6 4.4h-.6" />
+      <path d="M9.5 4.2C9.9 3.5 10.8 3 12 3s2.1.5 2.5 1.2M8.5 20.5h7M10 17.3V20.5M14 17.3V20.5" />
+    </>
+  ),
+  // magnifier over a report
+  "Second Opinion Service": (
+    <>
+      <path d="M6 3.5h9L19 7.5V19a1 1 0 0 1-1 1h-2.5" />
+      <path d="M13.5 3.5V7.5H19" />
+      <path d="M8.5 12h4M8.5 15h2.5" />
+      <circle cx="9.5" cy="18" r="2.7" />
+      <path d="m11.6 20.1 2 2" />
+    </>
+  ),
+  // pacifier
+  "Pediatric Care": (
+    <>
+      <circle cx="12" cy="10" r="4.3" />
+      <path d="M9.3 10a2.7 2.7 0 1 1 5.4 0" />
+      <path d="M9 13.6c-1 1-1 2.6.5 3M15 13.6c1 1 1 2.6-.5 3" />
+      <path d="M10.3 17.2a1.9 1.9 0 1 0 3.4 0" />
+    </>
+  ),
 };
 
 export function FeatureIcon({

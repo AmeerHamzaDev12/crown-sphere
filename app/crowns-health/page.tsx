@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 
+import { DesktopMockup } from "@/components/desktop-mockup";
+import { FeatureIcon } from "@/components/feature-icons";
 import { Reveal } from "@/components/reveal";
 import { SubProducts } from "@/components/sub-products";
 import {
@@ -23,6 +25,7 @@ import {
   forProviders,
   hero,
   howItWorks,
+  klinicDashboard,
   metrics,
   plans,
   problem,
@@ -137,15 +140,21 @@ export default function CrownsHealthPage() {
             <SectionHeading eyebrow={services.eyebrow} title={services.heading} />
           </Reveal>
 
-          <ul className="border-line mt-16 grid gap-px border-t md:grid-cols-2 xl:grid-cols-3">
+          {/* Dark-surface icon tiles — the same gradient-badge language as the
+              homepage Aurat Card benefit tiles, deliberately not the flat
+              hairline-outline grid this used before. */}
+          <ul className="mt-16 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
             {services.items.map((item, i) => (
               <Reveal
                 as="li"
                 key={item.title}
                 delay={(i % 3) * 80}
-                className="outline-line bg-ink-2 p-7 outline sm:p-8"
+                className="group rounded-2xl bg-white/[0.04] p-7 ring-1 ring-white/10 transition-all duration-300 hover:-translate-y-1 hover:bg-white/[0.07] hover:ring-[#d7a3de]/35 sm:p-8"
               >
-                <h3 className="display text-xl font-semibold">{item.title}</h3>
+                <span className="from-royal flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br to-[#3d1440] text-white ring-1 ring-[#d7a3de]/30 transition-transform duration-300 group-hover:-rotate-6 group-hover:scale-105">
+                  <FeatureIcon name={item.title} className="h-[22px] w-[22px]" />
+                </span>
+                <h3 className="display mt-6 text-xl">{item.title}</h3>
                 <p className="text-mist mt-4 text-sm leading-relaxed">
                   {item.body}
                 </p>
@@ -308,6 +317,32 @@ export default function CrownsHealthPage() {
             intro="Crowns Health runs on two partner-built platforms: one for the clinics we work with, one for reaching patients where no clinic is nearby."
             items={subProducts}
           />
+
+          {/* Klinic's own dashboard — a look at the product itself */}
+          <div className="mt-16 grid gap-12 lg:grid-cols-[1fr_1.3fr] lg:items-center lg:gap-16">
+            <Reveal>
+              <Eyebrow>Klinic, in practice</Eyebrow>
+              <h3 className="display mt-5 text-[clamp(1.6rem,3vw,2.25rem)]">
+                A look at the dashboard.
+              </h3>
+              <p className="text-mist mt-5 text-sm leading-relaxed">
+                Patients, appointments and revenue at a glance, with the day&apos;s
+                lab orders, prescriptions and new registrations one click away.
+              </p>
+            </Reveal>
+            <Reveal delay={120}>
+              <DesktopMockup
+                appName={klinicDashboard.appName}
+                url={klinicDashboard.url}
+                tabs={klinicDashboard.tabs}
+                stats={klinicDashboard.stats}
+                chartLabel={klinicDashboard.chartLabel}
+                chartPoints={klinicDashboard.chartPoints}
+                tableTitle={klinicDashboard.tableTitle}
+                rows={klinicDashboard.rows}
+              />
+            </Reveal>
+          </div>
         </Container>
       </Section>
 
