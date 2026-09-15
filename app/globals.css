@@ -365,6 +365,27 @@ em {
   will-change: transform;
 }
 
+/* ---------------------------------------------------------------------------
+   Phone mockup screenshot cycler (components/phone-mockup.tsx) — the same
+   animationend-driven advance as the homepage slider above.
+--------------------------------------------------------------------------- */
+@keyframes shot-progress {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.shot-progress {
+  animation: shot-progress var(--shot-ms, 3600ms) linear forwards;
+}
+
+.shots-paused .shot-progress {
+  animation-play-state: paused;
+}
+
 @keyframes slide-in {
   from {
     opacity: 0;

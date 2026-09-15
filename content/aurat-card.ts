@@ -101,23 +101,33 @@ export const platforms = {
 };
 
 /**
- * Labels for the in-app phone mockup (components/phone-mockup.tsx), taken from
- * the live Aurat Card app screens so the mockup matches the real product.
+ * Real screenshots of the live Aurat Card app (components/phone-mockup.tsx),
+ * cycled inside the phone frame. Files live in public/ as
+ * aurat-card-<tab>.jpeg, all 540×1208 (the phone frame's aspect is set to
+ * match exactly, so nothing gets cropped).
  */
-export const appMockup = {
-  brand: "Aurat Card",
-  brandSub: "Scan, save, and manage benefits",
-  heroKicker: "Your key to empowerment",
-  heroLines: ["Made for her.", "Made for Pakistan."],
-  heroBody:
-    "Discover savings, opportunities and experiences — before you even sign in.",
-  chooseTitle: "Choose your Aurat Card",
-  chooseSub: "Three life stages. One world of benefits.",
-  tiers: [
-    { name: "Silver", price: "PKR 5,000 / year", alt: "MYR 49 / year" },
-    { name: "Gold", price: "PKR 10,000 / year", alt: "MYR 99 / year" },
-  ],
-};
+export const appScreens = [
+  {
+    src: "/aurat-card-aangan.jpeg",
+    tab: "Aangan",
+    label: "Home — offers, quick links and top discounts",
+  },
+  {
+    src: "/aurat-card-humraah.jpeg",
+    tab: "Humraah",
+    label: "Find your favourites — the partner brand directory",
+  },
+  {
+    src: "/aurat-card-sahara.jpeg",
+    tab: "Sahara",
+    label: "Support pathways for wellbeing and legal aid",
+  },
+  {
+    src: "/aurat-card-apnay.jpeg",
+    tab: "Apnay",
+    label: "Your trusted circle — one-touch safety sharing",
+  },
+] as const;
 
 /** Short explainer video for the Aurat Card page. */
 export const videoShowcase = {
@@ -129,7 +139,7 @@ export const videoShowcase = {
    * public/aurat-card-poster.jpg) and set `src` to "/aurat-card.mp4".
    * While `src` is null the section shows a "coming soon" placeholder.
    */
-  src: null as string | null,
+  src: "/video/ezgif-8136fe201d16a3ef.webm",
   poster: null as string | null,
   duration: "1:30",
 };
@@ -331,21 +341,6 @@ export const lahoreFranchise = {
     ],
   },
 
-  economics: {
-    title: "Illustrative five-year economics",
-    caption:
-      "Gross membership-acquisition incentives by year — equivalent to PKR 1,000 per member.",
-    values: [
-      { label: "Year 1", value: "PKR 500M" },
-      { label: "Year 2", value: "PKR 900M" },
-      { label: "Year 3", value: "PKR 1.2B" },
-      { label: "Year 4", value: "PKR 1.32B" },
-      { label: "Year 5", value: "PKR 1.4B" },
-    ],
-    /** Must be rendered wherever the figures above are shown. */
-    footnote:
-      "These are gross membership-acquisition incentives, not guaranteed profit. Actual returns depend on member acquisition cost, marketing spend, staffing, working capital, applicable taxes and the terms of the definitive agreement. Figures are illustrative projections, not a forecast or a representation of results.",
-  },
 
   sectors: {
     title: "Strategic sectors",

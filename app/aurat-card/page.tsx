@@ -455,31 +455,6 @@ export default function AuratCardPage() {
             </Reveal>
           </div>
 
-          {/* illustrative economics — figures and footnote never separated */}
-          <Reveal className="mt-5 block">
-            <Card className="border-accent/25 bg-accent/[0.04]">
-              <h3 className="text-accent text-lg font-medium">
-                {lahoreFranchise.economics.title}
-              </h3>
-              <p className="text-mist mt-2 text-sm leading-relaxed">
-                {lahoreFranchise.economics.caption}
-              </p>
-              <dl className="border-line-soft mt-7 grid gap-6 border-t pt-7 sm:grid-cols-3 lg:grid-cols-5">
-                {lahoreFranchise.economics.values.map((row) => (
-                  <div key={row.label}>
-                    <dt className="text-dim text-[11px] tracking-[0.14em] uppercase">
-                      {row.label}
-                    </dt>
-                    <dd className="display mt-2 text-2xl">{row.value}</dd>
-                  </div>
-                ))}
-              </dl>
-              <p className="text-dim border-line-soft mt-8 border-t pt-6 text-xs leading-relaxed">
-                {lahoreFranchise.economics.footnote}
-              </p>
-            </Card>
-          </Reveal>
-
           {/* who does what */}
           <div className="mt-20 grid gap-5 lg:grid-cols-2">
             <Reveal>
