@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 
+import { ClientShowcase } from "@/components/client-showcase";
+import { DesktopMockup } from "@/components/desktop-mockup";
+import { FeatureIcon } from "@/components/feature-icons";
 import { Reveal } from "@/components/reveal";
 import { SubProducts } from "@/components/sub-products";
 import {
@@ -19,7 +22,9 @@ import {
 import {
   assessment,
   audiences,
+  clientShowcase,
   cms,
+  erpDashboard,
   finalCta,
   hero,
   pathways,
@@ -78,6 +83,20 @@ export default function CrownsEducationPage() {
               </div>
             </Card>
           </Reveal>
+
+          {/* a look at the product itself */}
+          <Reveal className="mt-10 block" delay={120}>
+            <DesktopMockup
+              appName={erpDashboard.appName}
+              tabs={erpDashboard.tabs}
+              stats={erpDashboard.stats}
+              chartLabel={erpDashboard.chartLabel}
+              chartPoints={erpDashboard.chartPoints}
+              tableTitle={erpDashboard.tableTitle}
+              rows={erpDashboard.rows}
+              className="mx-auto max-w-3xl"
+            />
+          </Reveal>
         </Container>
       </Section>
 
@@ -120,6 +139,18 @@ export default function CrownsEducationPage() {
         </Container>
       </Section>
 
+      {/* ------------------------------------------------------- client showcase */}
+      <Section tone="surface">
+        <Container>
+          <ClientShowcase
+            eyebrow={clientShowcase.eyebrow}
+            heading={clientShowcase.heading}
+            intro={clientShowcase.intro}
+            clients={clientShowcase.clients}
+          />
+        </Container>
+      </Section>
+
       {/* -------------------------------------------------------------- pathways */}
       <Section tone="cream">
         <Container>
@@ -133,18 +164,26 @@ export default function CrownsEducationPage() {
             <StatusBadge status={pathways.status} className="mt-8" />
           </Reveal>
 
-          <ul className="border-ink/12 mt-14 grid gap-px border-t lg:grid-cols-3">
+          {/* Icon-tile cards — the same language as Aurat Card's partner
+              sectors, deliberately not the numbered Steps look used above,
+              so the two grid styles on the site read as two different things. */}
+          <ul className="mt-14 grid gap-4 lg:grid-cols-3">
             {pathways.items.map((item, i) => (
               <Reveal
                 as="li"
                 key={item.title}
                 delay={i * 90}
-                className="outline-ink/10 bg-cream p-7 outline sm:p-8"
+                className="group flex items-start gap-4 rounded-2xl bg-white/70 p-6 shadow-[0_1px_2px_rgba(39,24,42,0.06)] ring-1 ring-[#271829]/8 transition-all duration-300 hover:-translate-y-1 hover:bg-white hover:shadow-[0_20px_40px_-24px_rgba(121,32,124,0.35)] sm:p-7"
               >
-                <h3 className="display text-xl font-semibold">{item.title}</h3>
-                <p className="text-ink/70 mt-4 text-sm leading-relaxed">
-                  {item.body}
-                </p>
+                <span className="from-royal flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-gradient-to-br to-[#3d1440] text-white shadow-sm transition-transform duration-300 group-hover:scale-105">
+                  <FeatureIcon name={item.title} className="h-5 w-5" />
+                </span>
+                <div>
+                  <h3 className="display text-lg">{item.title}</h3>
+                  <p className="text-ink/70 mt-2 text-sm leading-relaxed">
+                    {item.body}
+                  </p>
+                </div>
               </Reveal>
             ))}
           </ul>

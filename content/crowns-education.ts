@@ -70,11 +70,69 @@ export const pathways = {
     "We are exploring pathways with international institutions through which eligible students may pursue internationally recognized qualifications, subject to the requirements and approval of the relevant institution.",
 };
 
+/**
+ * Desktop dashboard mockup for the Campus Management & ERP section
+ * (components/desktop-mockup.tsx). Structured after a real ERP dashboard —
+ * stat row, weekly chart, recent-activity table — reskinned for a campus
+ * system: fee collection in place of POS revenue, admissions in place of
+ * invoices. Every figure below is illustrative, not a live statistic.
+ */
+export const erpDashboard = {
+  appName: "Campus ERP",
+  tabs: ["Dashboard", "Students", "Fees", "Attendance", "Reports"],
+  stats: [
+    { label: "Students Enrolled", value: "3,240", delta: "+4.1%" },
+    { label: "Fee Collection", value: "Rs 8.6M", delta: "+2.8%" },
+    { label: "Attendance Today", value: "94.2%" },
+    { label: "Active Courses", value: "186" },
+  ],
+  chartLabel: "Fee collection — last 7 days",
+  chartPoints: [58, 71, 64, 82, 69, 90, 97],
+  tableTitle: "Recent activity",
+  rows: [
+    { name: "Ayesha K.", meta: "Grade 9-A", amount: "Rs 24,000", status: "Paid" },
+    { name: "Bilal R.", meta: "Grade 6-C", amount: "Rs 18,500", status: "Paid" },
+    { name: "Hira S.", meta: "New admission", amount: "—", status: "Enrolled" },
+    { name: "Usman T.", meta: "Grade 11-B", amount: "Rs 22,000", status: "Pending" },
+  ],
+};
+
 export const assessment = {
   eyebrow: "Assessment technology",
   heading: "Technology-Enabled Assessment",
   body: "Technology designed to support secure and controlled academic assessment, giving participating institutions greater visibility and control over the testing process.",
   status: "In Development",
+};
+
+/**
+ * Named institutional clients (components/client-showcase.tsx). HSA has a
+ * real supplied logo at public/hsa-logo.png; the two universities render as
+ * typographic wordmarks since no logo file exists for them yet — swap in a
+ * `logo` path for either the moment one is supplied.
+ */
+export const clientShowcase = {
+  eyebrow: "Who we build for",
+  heading: "Real institutions. *Real systems.*",
+  intro:
+    "A selection of the systems Crowns Education has built and is building for partner institutions.",
+  clients: [
+    {
+      name: "Health Services Academy",
+      logo: "/hsa-logo.png",
+      description:
+        "A secure testing platform where candidates sit assessments for partner organisations — including government recruitment and public-sector examinations — built on our assessment technology.",
+    },
+    {
+      name: "University of Kamalia",
+      description:
+        "Campus management and digital administration — student records, attendance and academic operations — built on our Campus Management & ERP platform.",
+    },
+    {
+      name: "University of Home Economics",
+      description:
+        "Student records, fee collection and academic administration, run on our Campus Management & ERP platform.",
+    },
+  ],
 };
 
 export const audiences = {

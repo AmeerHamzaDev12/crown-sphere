@@ -68,6 +68,31 @@ const paths: Record<string, ReactNode> = {
       <path d="M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2V16h5v-.1c0-.8.4-1.5 1-2A6 6 0 0 0 12 3Z" />
     </>
   ),
+
+  /* ----- education pathways (content/crowns-education.ts `pathways.items`) ----- */
+  // globe
+  "International Curricula": (
+    <>
+      <circle cx="12" cy="12" r="8.5" />
+      <path d="M3.5 12h17M12 3.5c2.3 2.3 3.5 5.3 3.5 8.5s-1.2 6.2-3.5 8.5c-2.3-2.3-3.5-5.3-3.5-8.5S9.7 5.8 12 3.5Z" />
+    </>
+  ),
+  // exam paper with a check
+  "Secure Assessment": (
+    <>
+      <path d="M7 3.5h7.5L18 7v13.5a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4.5a1 1 0 0 1 1-1Z" />
+      <path d="M14.2 3.5V7H18" />
+      <path d="m8.7 13.2 1.8 1.8 3.3-3.6" />
+    </>
+  ),
+  // winding path toward a flag
+  "Academic Pathways": (
+    <>
+      <path d="M4 19c2.5 0 2.5-3 5-3s2.5 3 5 3 2.5-3 5-3" />
+      <path d="M17 4v6" />
+      <path d="M17 4h3.5L17 7" />
+    </>
+  ),
 };
 
 export function FeatureIcon({
