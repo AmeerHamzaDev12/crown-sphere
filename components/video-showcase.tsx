@@ -21,6 +21,9 @@ export function VideoShowcase({
   duration?: string;
   className?: string;
 }) {
+  const ext = src?.split(".").pop()?.toLowerCase();
+  const mime = ext === "webm" ? "video/webm" : "video/mp4";
+
   return (
     <div
       className={cx(
@@ -37,7 +40,7 @@ export function VideoShowcase({
             poster={poster ?? undefined}
             className="h-full w-full object-cover"
           >
-            <source src={src} type="video/mp4" />
+            <source src={src} type={mime} />
             Your browser does not support embedded video.
           </video>
         ) : (

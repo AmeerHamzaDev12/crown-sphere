@@ -135,11 +135,11 @@ export const videoShowcase = {
   heading: "Aurat Card *in ninety seconds.*",
   body: "A short walkthrough of the membership, the app and the partner network — what it is, who it is for and how it works.",
   /**
-   * Drop the file at public/aurat-card.mp4 (and a still at
-   * public/aurat-card-poster.jpg) and set `src` to "/aurat-card.mp4".
-   * While `src` is null the section shows a "coming soon" placeholder.
+   * The real explainer clip, at public/videos/ezgif-8136fe201d16a3ef.webm.
+   * While `src` is null the section shows a "coming soon" placeholder instead
+   * — see components/video-showcase.tsx.
    */
-  src: "/video/ezgif-8136fe201d16a3ef.webm",
+  src: "/videos/ezgif-8136fe201d16a3ef.webm",
   poster: null as string | null,
   duration: "1:30",
 };

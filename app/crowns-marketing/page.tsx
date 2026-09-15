@@ -77,18 +77,32 @@ export default function CrownsMarketingPage() {
               title={audiences.heading}
             />
           </Reveal>
-          <ul className="border-line mt-16 grid gap-px border-t sm:grid-cols-2 xl:grid-cols-4">
+          {/* An unboxed, numbered row list — deliberately not another card
+              grid, so it reads as a different kind of thing from the
+              numbered `services` cards just above it on this page. */}
+          <ul className="border-line mt-16 border-t">
             {audiences.items.map((item, i) => (
               <Reveal
                 as="li"
                 key={item.title}
-                delay={(i % 4) * 80}
-                className="outline-line bg-ink p-7 outline sm:p-8"
+                delay={i * 80}
+                className="group border-line relative flex flex-col gap-3 border-b py-9 transition-[padding] duration-300 hover:pl-5 sm:flex-row sm:items-center sm:gap-10 sm:py-10"
               >
-                <h3 className="text-lg font-medium text-white">{item.title}</h3>
-                <p className="text-mist mt-3 text-sm leading-relaxed">
-                  {item.body}
-                </p>
+                <span
+                  aria-hidden="true"
+                  className="bg-accent absolute inset-y-0 left-0 w-0.5 origin-top scale-y-0 transition-transform duration-300 group-hover:scale-y-100"
+                />
+                <span className="display text-[3.25rem] leading-none font-semibold text-white/10 transition-colors duration-300 group-hover:text-accent/40 sm:w-28 sm:shrink-0 sm:text-6xl">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <div className="flex-1">
+                  <h3 className="display text-xl font-semibold sm:text-2xl">
+                    {item.title}
+                  </h3>
+                  <p className="text-mist mt-2 max-w-lg text-sm leading-relaxed sm:text-base">
+                    {item.body}
+                  </p>
+                </div>
               </Reveal>
             ))}
           </ul>
