@@ -340,6 +340,7 @@ export default function CrownsHealthPage() {
                 chartPoints={klinicDashboard.chartPoints}
                 tableTitle={klinicDashboard.tableTitle}
                 rows={klinicDashboard.rows}
+                poweredByLogo="/superapp-logo.png"
               />
             </Reveal>
           </div>

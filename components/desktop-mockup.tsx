@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 import { cx } from "./ui";
 
 /* ---------------------------------------------------------------------------
@@ -172,6 +174,7 @@ export function DesktopMockup({
   chartPoints,
   tableTitle,
   rows,
+  poweredByLogo,
   className,
 }: {
   appName: string;
@@ -183,6 +186,8 @@ export function DesktopMockup({
   chartPoints: readonly number[];
   tableTitle: string;
   rows: readonly DashboardRow[];
+  /** Public path to the partner's logo, credited under the mockup. Optional. */
+  poweredByLogo?: string;
   className?: string;
 }) {
   return (
@@ -210,9 +215,28 @@ export function DesktopMockup({
           />
         </div>
       </div>
-      <p className="text-dim mt-4 text-center text-xs">
-        Illustrative interface — for demonstration only.
-      </p>
+      <div className="mt-4 flex flex-col items-center gap-2">
+        {poweredByLogo ? (
+          <span className="flex items-center gap-2">
+            <span className="text-dim text-[11px] tracking-[0.1em] uppercase">
+              Powered by
+            </span>
+            <Image
+              src={poweredByLogo}
+              alt=""
+              width={200}
+              height={46}
+              // Partner logo — served unoptimized, same as elsewhere; see
+              // client-showcase.tsx for why.
+              unoptimized
+              className="h-4 w-auto object-contain opacity-80"
+            />
+          </span>
+        ) : null}
+        <p className="text-dim text-center text-xs">
+          Illustrative interface — for demonstration only.
+        </p>
+      </div>
     </div>
   );
 }

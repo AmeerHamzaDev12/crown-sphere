@@ -65,11 +65,11 @@ export const whoWeAre = {
   cta: { label: "Learn More About CSPL", href: "/about" },
   pillars: [
     {
-      title: "Build",
+      title: "Identify",
       body: "Develop businesses, platforms and technology-enabled solutions.",
     },
     {
-      title: "Operate",
+      title: "Build",
       body: "Build and manage operating capabilities around viable products and services.",
     },
     {
@@ -77,7 +77,7 @@ export const whoWeAre = {
       body: "Work with businesses, institutions and organizations to extend capabilities and market reach.",
     },
     {
-      title: "Develop Opportunities",
+      title: "Grow and Opportunities",
       body: "Identify and support opportunities where capital, technology, partnerships and operational expertise create long-term value.",
     },
   ],

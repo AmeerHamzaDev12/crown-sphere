@@ -95,6 +95,7 @@ export default function CrownsEducationPage() {
               chartPoints={erpDashboard.chartPoints}
               tableTitle={erpDashboard.tableTitle}
               rows={erpDashboard.rows}
+              poweredByLogo="/superapp-logo.png"
               className="mx-auto max-w-3xl"
             />
           </Reveal>

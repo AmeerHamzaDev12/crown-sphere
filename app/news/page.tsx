@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 
 import { Reveal } from "@/components/reveal";
 import {
@@ -73,27 +74,95 @@ export default function NewsPage() {
 
           {rest.length > 0 ? (
             <ul className="mt-5 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-              {rest.map((article, i) => (
-                <Reveal as="li" key={article.slug} delay={(i % 3) * 80}>
-                  <Card className="flex h-full flex-col">
-                    <div className="flex flex-wrap items-center gap-3">
-                      <span className="bg-accent/12 text-accent rounded-full px-3 py-1 text-[11px] font-medium tracking-[0.1em] uppercase">
-                        {article.category}
-                      </span>
-                      <span className="text-dim text-xs">{article.date}</span>
+              {rest.map((article, i) =>
+                article.image ? (
+                  // Brand-story card: photo header with a dark scrim so a
+                  // busy source image (a partner's own bright marketing
+                  // graphic, a stock photo) sits inside our palette instead
+                  // of fighting it, logo badge over the image, copy below.
+                  <Reveal as="li" key={article.slug} delay={(i % 3) * 80}>
+                    <div className="rounded-card border-line bg-surface group relative flex h-full flex-col overflow-hidden border transition-all duration-300 hover:-translate-y-1 hover:border-accent/40">
+                      <div className="relative aspect-[4/3] overflow-hidden">
+                        <Image
+                          src={article.image}
+                          alt=""
+                          fill
+                          sizes="(min-width: 1280px) 33vw, (min-width: 768px) 50vw, 100vw"
+                          className="object-cover brightness-[0.65] saturate-[0.7] transition-transform duration-500 group-hover:scale-105"
+                        />
+                        <div
+                          aria-hidden="true"
+                          className="from-ink via-ink/35 absolute inset-0 bg-gradient-to-t to-transparent"
+                        />
+                        {article.logo ? (
+                          <span className="absolute bottom-4 left-4 flex h-12 w-12 items-center justify-center rounded-xl bg-white p-2 shadow-lg">
+                            <Image
+                              src={article.logo}
+                              alt=""
+                              width={80}
+                              height={80}
+                              unoptimized
+                              className="h-full w-full object-contain"
+                            />
+                          </span>
+                        ) : null}
+                      </div>
+                      <div className="flex flex-1 flex-col p-7 sm:p-8">
+                        <div className="flex flex-wrap items-center gap-3">
+                          <span className="bg-accent/12 text-accent rounded-full px-3 py-1 text-[11px] font-medium tracking-[0.1em] uppercase">
+                            {article.category}
+                          </span>
+                          <span className="text-dim text-xs">{article.date}</span>
+                        </div>
+                        <h3 className="display mt-5 text-xl font-semibold">
+                          {article.title}
+                        </h3>
+                        <div className="flex-1">
+                          <p className="text-mist mt-4 text-sm leading-relaxed">
+                            {article.excerpt}
+                          </p>
+                          {article.excerpt2 ? (
+                            <p className="text-mist mt-3 text-sm leading-relaxed">
+                              {article.excerpt2}
+                            </p>
+                          ) : null}
+                          {article.tagline ? (
+                            <p className="mt-5">
+                              <em>{article.tagline}</em>
+                            </p>
+                          ) : null}
+                        </div>
+                        <ArrowLink
+                          href={article.href ?? "/contact"}
+                          className="mt-6"
+                        >
+                          Read More
+                        </ArrowLink>
+                      </div>
                     </div>
-                    <h3 className="display mt-5 text-xl font-semibold">
-                      {article.title}
-                    </h3>
-                    <p className="text-mist mt-4 flex-1 text-sm leading-relaxed">
-                      {article.excerpt}
-                    </p>
-                    <ArrowLink href={article.href ?? "/contact"} className="mt-6">
-                      Read More
-                    </ArrowLink>
-                  </Card>
-                </Reveal>
-              ))}
+                  </Reveal>
+                ) : (
+                  <Reveal as="li" key={article.slug} delay={(i % 3) * 80}>
+                    <Card className="flex h-full flex-col">
+                      <div className="flex flex-wrap items-center gap-3">
+                        <span className="bg-accent/12 text-accent rounded-full px-3 py-1 text-[11px] font-medium tracking-[0.1em] uppercase">
+                          {article.category}
+                        </span>
+                        <span className="text-dim text-xs">{article.date}</span>
+                      </div>
+                      <h3 className="display mt-5 text-xl font-semibold">
+                        {article.title}
+                      </h3>
+                      <p className="text-mist mt-4 flex-1 text-sm leading-relaxed">
+                        {article.excerpt}
+                      </p>
+                      <ArrowLink href={article.href ?? "/contact"} className="mt-6">
+                        Read More
+                      </ArrowLink>
+                    </Card>
+                  </Reveal>
+                ),
+              )}
             </ul>
           ) : null}
 
