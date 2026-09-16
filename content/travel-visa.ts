@@ -128,7 +128,7 @@ export const services = {
       body: "Accommodation booked directly, including CSPL's own properties, with rooms confirmed before payment is taken.",
       points: [
         "Direct booking with partner hotels",
-        "CSPL properties including Amrri Hotel",
+        "CSPL properties including Misaari Hotel",
         "Confirmation before payment",
       ],
     },
@@ -172,20 +172,35 @@ export const routes = {
   note: "Route availability depends on carrier schedules and applicable approvals.",
 };
 
-export const amrri = {
+export const misaariHotel = {
   eyebrow: "CSPL properties",
-  heading: "Amrri Hotel",
-  body: "Amrri Hotel is booked directly through Safar Sahulat. Photography and a walkthrough video of the property are being produced and will replace the placeholders below.",
-  /**
-   * Every slot here is a labelled placeholder on purpose. Real Amrri Hotel
-   * photography and video are being shot and will be swapped in by hand —
-   * do not substitute stock imagery in the meantime.
-   */
+  heading: "Misaari Hotel",
+  body: "Misaari Hotel, in Misaari, Murree, is booked directly through Safar Sahulat.",
   media: [
-    { label: "Amrri Hotel — exterior", kind: "Photo" as const, note: "Hero image for the property" },
-    { label: "Amrri Hotel — guest room", kind: "Photo" as const, note: "Representative room type" },
-    { label: "Amrri Hotel — dining and common areas", kind: "Photo" as const, note: "Two to three images" },
-    { label: "Amrri Hotel — property walkthrough", kind: "Video" as const, note: "Short tour, 60-90 seconds" },
+    {
+      label: "Misaari Hotel — hillside view",
+      kind: "Photo" as const,
+      note: "Signature view from the property",
+      src: "/misaari-hero.jpg",
+    },
+    {
+      label: "Misaari Hotel — guest room",
+      kind: "Photo" as const,
+      note: "Representative room type",
+      src: "/misaari-room.jpg",
+    },
+    {
+      label: "Misaari Hotel — dining and common areas",
+      kind: "Photo" as const,
+      note: "Common areas",
+      src: "/misaari-common-area.jpg",
+    },
+    {
+      label: "Misaari Hotel — property walkthrough",
+      kind: "Video" as const,
+      note: "Property walkthrough",
+      src: "/videos/misaari-walkthrough.mp4",
+    },
   ],
 };
 

@@ -18,13 +18,13 @@ import {
   withAccent,
 } from "@/components/ui";
 import {
-  amrri,
   appCallout,
   building,
   disclaimer,
   finalCta,
   hero,
   misaari,
+  misaariHotel,
   offerings,
   routes,
   safarSahulat,
@@ -188,22 +188,23 @@ export default function TravelVisaPage() {
             </Card>
           </Reveal>
 
-          {/* Amrri Hotel — every media slot is an explicit placeholder */}
+          {/* Misaari Hotel */}
           <Reveal className="mt-20 block">
-            <Eyebrow>{amrri.eyebrow}</Eyebrow>
+            <Eyebrow>{misaariHotel.eyebrow}</Eyebrow>
             <h3 className="display mt-5 text-[clamp(1.75rem,3.2vw,2.5rem)]">
-              {amrri.heading}
+              {misaariHotel.heading}
             </h3>
             <p className="text-mist measure mt-5 text-base leading-relaxed">
-              {amrri.body}
+              {misaariHotel.body}
             </p>
             <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-              {amrri.media.map((slot) => (
+              {misaariHotel.media.map((slot) => (
                 <MediaPlaceholder
                   key={slot.label}
                   label={slot.label}
                   kind={slot.kind}
                   note={slot.note}
+                  src={slot.src}
                 />
               ))}
             </div>

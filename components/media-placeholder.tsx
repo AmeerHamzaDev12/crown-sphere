@@ -1,27 +1,63 @@
+import Image from "next/image";
+
 import { cx } from "./ui";
 
 /**
- * A named, clearly-labelled stand-in for media that has not been supplied yet.
- *
- * Deliberately *not* a stock photo — it should be obvious at a glance that this
- * slot is awaiting a real asset, so nothing placeholder-ish ever reaches
- * production unnoticed. Each slot carries the name of the asset expected, so
- * whoever swaps it in knows exactly what belongs here.
+ * A named, clearly-labelled stand-in for media that has not been supplied yet
+ * — or, once `src` is set, the real photo or video itself. Deliberately *not*
+ * a stock photo while empty: it should be obvious at a glance that a slot is
+ * awaiting a real asset, so nothing placeholder-ish ever reaches production
+ * unnoticed.
  */
 export function MediaPlaceholder({
   label,
   kind = "Photo",
   note,
   aspect = "4/3",
+  src,
   className,
 }: {
-  /** What asset belongs here, e.g. "Amrri Hotel — deluxe room". */
+  /** What asset belongs here, e.g. "Misaari Hotel — deluxe room". */
   label: string;
   kind?: "Photo" | "Video" | "Gallery";
   note?: string;
   aspect?: string;
+  /** Public path to the real asset. Renders it in place of the placeholder. */
+  src?: string;
   className?: string;
 }) {
+  if (src) {
+    return (
+      <div
+        style={{ aspectRatio: aspect }}
+        className={cx(
+          "bg-surface relative overflow-hidden rounded-2xl",
+          className,
+        )}
+      >
+        {kind === "Video" ? (
+          <video
+            src={src}
+            controls
+            preload="metadata"
+            playsInline
+            className="h-full w-full object-cover"
+          >
+            Your browser does not support embedded video.
+          </video>
+        ) : (
+          <Image
+            src={src}
+            alt={label}
+            fill
+            sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+            className="object-cover"
+          />
+        )}
+      </div>
+    );
+  }
+
   return (
     <div
       style={{ aspectRatio: aspect }}
