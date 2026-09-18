@@ -60,8 +60,19 @@ export default function CrownsTvPage() {
           <ul className="mt-16 grid gap-5 lg:grid-cols-3">
             {about.items.map((item, i) => (
               <Reveal as="li" key={item.title} delay={i * 90}>
-                <Card className="h-full">
-                  <h3 className="display text-2xl font-semibold">{item.title}</h3>
+                <Card className="group relative h-full">
+                  <div className="flex items-center gap-2">
+                    <span
+                      aria-hidden="true"
+                      className="bg-accent/40 group-hover:bg-accent h-1.5 w-1.5 rounded-full transition-colors duration-400 group-hover:animate-pulse"
+                    />
+                    <span className="text-dim font-display text-xs tracking-[0.08em] italic">
+                      {`00:0${i + 1}`}
+                    </span>
+                  </div>
+                  <h3 className="display mt-5 text-2xl font-semibold">
+                    {item.title}
+                  </h3>
                   <p className="text-mist mt-4 text-sm leading-relaxed">
                     {item.body}
                   </p>
@@ -125,7 +136,10 @@ export default function CrownsTvPage() {
                 <p className="text-dim mt-6 text-[11px] tracking-[0.16em] uppercase">
                   Content can include
                 </p>
-                <PillList items={auratCardContent.items} className="mt-4 flex-1" />
+                <PillList
+                  items={auratCardContent.items}
+                  className="mt-4 flex-1"
+                />
                 <div className="mt-8">
                   <CtaButton
                     href={auratCardContent.cta.href}
@@ -175,10 +189,28 @@ export default function CrownsTvPage() {
                 as="li"
                 key={item.title}
                 delay={(i % 4) * 80}
-                className="outline-line bg-ink p-7 outline sm:p-8"
+                className="group outline-line bg-ink relative overflow-hidden p-7 outline transition-colors duration-400 hover:bg-ink-2 sm:p-8"
               >
-                <h3 className="text-lg font-medium text-white">{item.title}</h3>
-                <p className="text-mist mt-3 text-sm leading-relaxed">
+                <span
+                  aria-hidden="true"
+                  className="border-accent/0 group-hover:border-accent/40 pointer-events-none absolute inset-3 rounded-lg border transition-colors duration-400"
+                />
+                <div
+                  aria-hidden="true"
+                  className="relative flex h-5 items-end gap-[3px]"
+                >
+                  {[6, 14, 9, 17].map((h, bar) => (
+                    <span
+                      key={bar}
+                      style={{ height: h, animationDelay: `${bar * 120}ms` }}
+                      className="bg-accent/40 group-hover:bg-accent w-[3px] transition-colors duration-500 group-hover:animate-pulse"
+                    />
+                  ))}
+                </div>
+                <h3 className="display relative mt-5 text-lg tracking-wide text-white uppercase">
+                  {item.title}
+                </h3>
+                <p className="text-mist relative mt-3 text-sm leading-relaxed">
                   {item.body}
                 </p>
               </Reveal>

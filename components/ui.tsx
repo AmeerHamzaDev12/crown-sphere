@@ -40,7 +40,9 @@ export function Container({
   children: ReactNode;
 }) {
   return (
-    <div className={cx("mx-auto w-full max-w-[1280px] px-5 sm:px-8", className)}>
+    <div
+      className={cx("mx-auto w-full max-w-[1280px] px-5 sm:px-8", className)}
+    >
       {children}
     </div>
   );
@@ -551,7 +553,10 @@ export function PageHero({
         className="from-plum/45 pointer-events-none absolute -top-40 left-1/2 h-[520px] w-[900px] -translate-x-1/2 rounded-full bg-gradient-to-b to-transparent blur-3xl"
       />
       <Container className="relative">
-        <div className="rise-in" style={{ "--enter-stagger": "80ms" } as React.CSSProperties}>
+        <div
+          className="rise-in"
+          style={{ "--enter-stagger": "80ms" } as React.CSSProperties}
+        >
           <Eyebrow>{eyebrow}</Eyebrow>
         </div>
         <h1
@@ -569,7 +574,10 @@ export function PageHero({
           </p>
         ) : null}
         {status ? (
-          <div className="rise-in" style={{ "--enter-stagger": "360ms" } as React.CSSProperties}>
+          <div
+            className="rise-in"
+            style={{ "--enter-stagger": "360ms" } as React.CSSProperties}
+          >
             <StatusBadge status={status} className="mt-8" />
           </div>
         ) : null}

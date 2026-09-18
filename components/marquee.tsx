@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 import { SectorIcon, hasSectorIcon } from "./sector-icon";
 import { cx } from "./ui";
 
@@ -5,8 +7,16 @@ import { cx } from "./ui";
  * Continuously scrolling strip. The children are duplicated once so the
  * -50% keyframe loops seamlessly (see .marquee-track in globals.css).
  *
- * Swap the text items for <Image> logos when the partner assets arrive.
+ * Items may be plain text or partner logo objects. The children are duplicated
+ * once so the -50% keyframe loops seamlessly.
  */
+export type MarqueeItem =
+  | string
+  | {
+      name: string;
+      logo?: string;
+    };
+
 export function Marquee({
   items,
   speed = 42,
@@ -14,7 +24,7 @@ export function Marquee({
   icons = false,
   className,
 }: {
-  items: readonly string[];
+  items: readonly MarqueeItem[];
   /** Seconds for one full loop — higher is slower. */
   speed?: number;
   /** `band` is the reference build's solid purple ticker. */
@@ -42,7 +52,7 @@ export function Marquee({
       >
         {doubled.map((item, index) => (
           <li
-            key={`${item}-${index}`}
+            key={`${typeof item === "string" ? item : item.name}-${index}`}
             aria-hidden={index >= items.length}
             className={cx(
               "flex items-center whitespace-nowrap",
@@ -54,7 +64,7 @@ export function Marquee({
             )}
           >
             <span className="flex items-center gap-3.5">
-              {icons && hasSectorIcon(item) ? (
+              {typeof item === "string" && icons && hasSectorIcon(item) ? (
                 <span
                   className={cx(
                     "flex h-11 w-11 shrink-0 items-center justify-center rounded-full border",
@@ -66,6 +76,17 @@ export function Marquee({
                   <SectorIcon name={item} className="h-5 w-5" />
                 </span>
               ) : null}
+              {typeof item === "string" || !item.logo ? null : (
+                <span className="flex h-11 w-28 shrink-0 items-center justify-center rounded-full border border-royal/15 bg-white/35 px-3">
+                  <Image
+                    src={item.logo}
+                    alt=""
+                    width={160}
+                    height={56}
+                    className="max-h-8 w-auto max-w-full object-contain"
+                  />
+                </span>
+              )}
               <span
                 className={cx(
                   tone === "band"
@@ -73,7 +94,7 @@ export function Marquee({
                     : "font-display text-xl font-medium tracking-[-0.02em] sm:text-2xl",
                 )}
               >
-                {item}
+                {typeof item === "string" ? item : item.name}
               </span>
             </span>
             <span

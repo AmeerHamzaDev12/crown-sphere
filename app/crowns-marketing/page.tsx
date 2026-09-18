@@ -46,19 +46,26 @@ export default function CrownsMarketingPage() {
       <Section tone="surface" id="services">
         <Container>
           <Reveal>
-            <SectionHeading eyebrow={services.eyebrow} title={services.heading} />
+            <SectionHeading
+              eyebrow={services.eyebrow}
+              title={services.heading}
+            />
           </Reveal>
           <ul className="mt-16 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
             {services.items.map((item, i) => (
               <Reveal as="li" key={item.title} delay={(i % 3) * 80}>
-                <Card className="h-full">
-                  <span className="text-accent font-display text-sm">
+                <Card className="group relative h-full">
+                  <span
+                    aria-hidden="true"
+                    className="from-accent/15 pointer-events-none absolute inset-x-0 bottom-0 h-0 bg-gradient-to-t to-transparent transition-all duration-500 ease-out group-hover:h-full"
+                  />
+                  <span className="text-accent font-display relative inline-block text-sm transition-transform duration-400 group-hover:-translate-y-1">
                     {String(i + 1).padStart(2, "0")}
                   </span>
-                  <h3 className="display mt-6 text-2xl font-semibold">
+                  <h3 className="display relative mt-6 text-2xl font-semibold">
                     {item.title}
                   </h3>
-                  <p className="text-mist mt-4 text-sm leading-relaxed">
+                  <p className="text-mist relative mt-4 text-sm leading-relaxed">
                     {item.body}
                   </p>
                 </Card>

@@ -1,6 +1,6 @@
 import { FeatureIcon } from "./feature-icons";
 import { Reveal } from "./reveal";
-import { cx } from "./ui";
+import { ArrowLink, cx } from "./ui";
 
 /**
  * The four "what we do" pillars as staggered feature tiles.
@@ -15,7 +15,11 @@ export function PillarGrid({
   items,
   className,
 }: {
-  items: readonly { title: string; body: string }[];
+  items: readonly {
+    title: string;
+    body: string;
+    links?: readonly { label: string; href: string }[];
+  }[];
   className?: string;
 }) {
   return (
@@ -59,6 +63,16 @@ export function PillarGrid({
                 aria-hidden="true"
                 className="bg-accent relative mt-6 block h-px w-10 transition-all duration-500 group-hover:w-full"
               />
+
+              {item.links && item.links.length > 0 && (
+                <div className="relative mt-5 flex flex-col items-start gap-1.5">
+                  {item.links.map((link) => (
+                    <ArrowLink key={link.href} href={link.href}>
+                      {link.label}
+                    </ArrowLink>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
         </Reveal>

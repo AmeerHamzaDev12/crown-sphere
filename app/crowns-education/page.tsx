@@ -208,8 +208,26 @@ export default function CrownsEducationPage() {
           <ul className="mt-16 grid gap-5 md:grid-cols-3">
             {audiences.items.map((item, i) => (
               <Reveal as="li" key={item.title} delay={i * 90}>
-                <Card className="h-full">
-                  <h3 className="display text-2xl font-semibold">{item.title}</h3>
+                <Card className="group relative h-full">
+                  <span
+                    aria-hidden="true"
+                    className="border-accent/70 pointer-events-none absolute top-4 left-4 h-4 w-4 scale-75 border-t-2 border-l-2 opacity-0 transition-all duration-400 group-hover:scale-100 group-hover:opacity-100"
+                  />
+                  <span
+                    aria-hidden="true"
+                    className="border-accent/70 pointer-events-none absolute top-4 right-4 h-4 w-4 scale-75 border-t-2 border-r-2 opacity-0 transition-all duration-400 group-hover:scale-100 group-hover:opacity-100"
+                  />
+                  <span
+                    aria-hidden="true"
+                    className="border-accent/70 pointer-events-none absolute bottom-4 left-4 h-4 w-4 scale-75 border-b-2 border-l-2 opacity-0 transition-all duration-400 group-hover:scale-100 group-hover:opacity-100"
+                  />
+                  <span
+                    aria-hidden="true"
+                    className="border-accent/70 pointer-events-none absolute right-4 bottom-4 h-4 w-4 scale-75 border-r-2 border-b-2 opacity-0 transition-all duration-400 group-hover:scale-100 group-hover:opacity-100"
+                  />
+                  <h3 className="display text-2xl font-semibold">
+                    {item.title}
+                  </h3>
                   <p className="text-mist mt-4 text-sm leading-relaxed">
                     {item.body}
                   </p>
@@ -219,7 +237,8 @@ export default function CrownsEducationPage() {
           </ul>
           <Disclaimer>
             Programme availability, academic pathways and qualifications are
-            subject to the requirements and approval of the relevant institution.
+            subject to the requirements and approval of the relevant
+            institution.
           </Disclaimer>
         </Container>
       </Section>

@@ -52,19 +52,30 @@ export default function CrownsFinancialPage() {
       <Section tone="surface">
         <Container>
           <Reveal>
-            <SectionHeading eyebrow={outcomes.eyebrow} title={outcomes.heading} />
+            <SectionHeading
+              eyebrow={outcomes.eyebrow}
+              title={outcomes.heading}
+            />
           </Reveal>
           <ul className="mt-16 grid gap-5 md:grid-cols-3">
             {outcomes.items.map((item, i) => (
               <Reveal as="li" key={item.title} delay={i * 90}>
-                <Card className="h-full">
-                  <span className="text-accent font-display text-sm">
+                <Card className="group relative h-full overflow-hidden transition-colors duration-500 hover:border-[#d7a3de]/40">
+                  <span
+                    aria-hidden="true"
+                    className="bg-accent absolute inset-y-0 left-0 w-[3px] origin-bottom scale-y-0 transition-transform duration-500 ease-out group-hover:scale-y-100"
+                  />
+                  <span
+                    aria-hidden="true"
+                    className="bg-accent/20 pointer-events-none absolute -top-10 -left-10 h-32 w-32 rounded-full opacity-0 blur-2xl transition-opacity duration-500 group-hover:opacity-100"
+                  />
+                  <span className="text-accent font-display relative inline-block text-sm transition-transform duration-500 group-hover:translate-x-1 group-hover:scale-110">
                     {String(i + 1).padStart(2, "0")}
                   </span>
-                  <h3 className="display mt-6 text-2xl font-semibold">
+                  <h3 className="display relative mt-6 text-2xl font-semibold">
                     {item.title}
                   </h3>
-                  <p className="text-mist mt-4 text-sm leading-relaxed">
+                  <p className="text-mist relative mt-4 text-sm leading-relaxed">
                     {item.body}
                   </p>
                 </Card>
@@ -78,7 +89,10 @@ export default function CrownsFinancialPage() {
       <Section id="services">
         <Container>
           <Reveal>
-            <SectionHeading eyebrow={services.eyebrow} title={services.heading} />
+            <SectionHeading
+              eyebrow={services.eyebrow}
+              title={services.heading}
+            />
           </Reveal>
 
           <div className="mt-16 space-y-5">
@@ -133,10 +147,27 @@ export default function CrownsFinancialPage() {
                 as="li"
                 key={item.title}
                 delay={(i % 3) * 80}
-                className="outline-line bg-ink-2 p-7 outline"
+                className="group outline-line bg-ink-2 relative overflow-hidden p-7 pl-9 outline transition-colors duration-400 hover:bg-ink-2/70"
               >
-                <h3 className="text-lg font-medium text-white">{item.title}</h3>
-                <p className="text-mist mt-3 text-sm leading-relaxed">
+                <span
+                  aria-hidden="true"
+                  className="bg-accent/25 group-hover:bg-accent absolute inset-y-0 left-0 w-[3px] transition-colors duration-400"
+                />
+                <span className="border-line text-dim font-display absolute top-7 right-7 flex h-7 w-7 items-center justify-center rounded-full border text-[11px] italic transition-colors duration-400 group-hover:border-accent/50 group-hover:text-accent">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <div className="flex items-center gap-2 pr-10">
+                  <h3 className="text-lg font-medium text-white transition-transform duration-400 group-hover:translate-x-1">
+                    {item.title}
+                  </h3>
+                  <span
+                    aria-hidden="true"
+                    className="text-accent -translate-x-2 opacity-0 transition-all duration-400 group-hover:translate-x-0 group-hover:opacity-100"
+                  >
+                    →
+                  </span>
+                </div>
+                <p className="text-mist mt-3 text-sm leading-relaxed transition-transform duration-400 group-hover:translate-x-1">
                   {item.body}
                 </p>
               </Reveal>

@@ -59,26 +59,33 @@ export const tickerItems = [
 ];
 
 export const whoWeAre = {
-  eyebrow: "Who we are",
-  heading: "Identify build *Partner grow.*",
-  body: "CSPL builds, operates and invests in businesses and technology-enabled platforms while developing strategic partnerships and opportunities across multiple sectors. We identify opportunities, develop solutions and work with partners to create businesses designed for sustainable growth and long-term value.",
+  eyebrow: "Identify → Build → Partner → Grow",
+  heading: "One ecosystem. *Multiple opportunities.*",
+  body: "We combine opportunity identification, venture building, strategic partnerships and growth capabilities within one connected ecosystem. Crowns Sphere develops and operates ventures across sectors, using shared capabilities, technology, partnerships and networks to create connected growth opportunities.",
   cta: { label: "Learn More About CSPL", href: "/about" },
   pillars: [
     {
       title: "Identify",
-      body: "Develop businesses, platforms and technology-enabled solutions.",
+      body: "Find the opportunity. We identify promising ideas, businesses, assets, market gaps and strategic opportunities.",
+      links: [{ label: "Explore Opportunities", href: "/opportunities" }],
     },
     {
       title: "Build",
-      body: "Build and manage operating capabilities around viable products and services.",
+      body: "Turn opportunity into reality. We build businesses, platforms, technology and operating capabilities.",
+      links: [{ label: "Explore Ventures", href: "/ventures" }],
     },
     {
       title: "Partner",
-      body: "Work with businesses, institutions and organizations to extend capabilities and market reach.",
+      body: "Bring the right people together. We work with investors, institutions, entrepreneurs, businesses and technology partners.",
+      links: [{ label: "Explore Partnerships", href: "/partnerships" }],
     },
     {
-      title: "Grow and Opportunities",
-      body: "Identify and support opportunities where capital, technology, partnerships and operational expertise create long-term value.",
+      title: "Grow",
+      body: "Scale what works. We help ventures expand customers, revenue, markets, capabilities and value.",
+      links: [
+        { label: "Explore Ventures", href: "/ventures" },
+        { label: "Explore Opportunities", href: "/opportunities" },
+      ],
     },
   ],
 };
@@ -123,20 +130,20 @@ export const partners = {
   heading: "Partners across *multiple sectors.*",
   intro:
     "We work with businesses and institutions across healthcare, education, hospitality, retail and lifestyle services.",
-  /**
-   * Placeholder strip — swap these names for partner logos in /public/partners
-   * and render <Image> inside <Marquee> when the assets are approved.
-   */
+  /** Partner logos displayed in the moving strip on the homepage. */
   logos: [
-    "Education",
-    "Healthcare",
-    "Hospitality",
-    "Food & Dining",
-    "Wellness",
-    "Transport",
-    "Sports",
-    "Beauty & Personal Care",
-    "Retail",
+    { name: "DSIT", logo: "/DSIT%20Logo.png" },
+    { name: "UNIBOTVERSE" },
+    { name: "ITC COMMUNICATIONS", logo: "/ITC%20Communication%20logo.png" },
+    { name: "ITC ENGINEERING", logo: "/ITC%20Engineering%20logo.png" },
+    { name: "MIACON FZE", logo: "/meaicon-LLC-FZ-logo-black.svg" },
+    { name: "MY BOLT MALAYSIA", logo: "/Mybolt%20malaysia.svg" },
+    { name: "UCI Education", logo: "/uci24-education-1l-blue-4-1.png" },
+    { name: "Rehman Foundation", logo: "/Rehman%20Foundation%20Health.png" },
+    {
+      name: "SARF International Hospital",
+      logo: "/SARF-LOGO-2-2048x775.jpeg",
+    },
   ],
 };
 

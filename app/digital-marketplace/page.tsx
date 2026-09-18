@@ -111,10 +111,16 @@ export default function DigitalMarketplacePage() {
                 as="li"
                 key={item.title}
                 delay={(i % 3) * 80}
-                className="outline-line bg-ink-2 p-7 outline sm:p-8"
+                className="group outline-line bg-ink-2 relative overflow-hidden p-7 outline sm:p-8"
               >
-                <h3 className="display text-xl font-semibold">{item.title}</h3>
-                <p className="text-mist mt-3 text-sm leading-relaxed">
+                <span
+                  aria-hidden="true"
+                  className="from-accent/0 via-accent/70 to-accent/0 pointer-events-none absolute inset-x-0 top-0 h-1/2 -translate-y-full bg-gradient-to-b opacity-0 transition-all duration-700 ease-out group-hover:translate-y-[220%] group-hover:opacity-100"
+                />
+                <h3 className="display relative text-xl font-semibold transition-colors duration-300 group-hover:text-accent">
+                  {item.title}
+                </h3>
+                <p className="text-mist relative mt-3 text-sm leading-relaxed">
                   {item.body}
                 </p>
               </Reveal>
@@ -170,11 +176,18 @@ export default function DigitalMarketplacePage() {
           <ul className="mt-16 grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
             {audiences.items.map((item, i) => (
               <Reveal as="li" key={item.title} delay={(i % 4) * 80}>
-                <Card className="h-full">
-                  <h3 className="text-lg font-medium text-white">
+                <Card className="group relative h-full transition-all duration-300 hover:-translate-y-1 hover:border-accent/35">
+                  <span
+                    aria-hidden="true"
+                    className="bg-accent absolute top-0 left-7 h-1 w-8 origin-left scale-x-0 transition-transform duration-400 group-hover:scale-x-100"
+                  />
+                  <span className="border-line text-dim relative inline-flex h-8 w-8 items-center justify-center rounded-md border text-[11px] transition-colors duration-400 group-hover:border-accent/40 group-hover:text-accent">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <h3 className="relative mt-5 text-lg font-medium text-white">
                     {item.title}
                   </h3>
-                  <p className="text-mist mt-3 text-sm leading-relaxed">
+                  <p className="text-mist relative mt-3 text-sm leading-relaxed">
                     {item.body}
                   </p>
                 </Card>

@@ -32,17 +32,20 @@ export const approach = {
 export const sectors = {
   eyebrow: "Partners across multiple sectors",
   heading: "Healthcare, Education, Retail — and Growing",
-  /** Placeholder strip — swap for partner logos when the assets are approved. */
+  /** Partner logos displayed in the moving strip. */
   logos: [
-    "Healthcare",
-    "Education",
-    "Retail",
-    "Hospitality",
-    "Food & Dining",
-    "Wellness",
-    "Transport",
-    "Sports",
-    "Beauty & Personal Care",
+    { name: "DSIT", logo: "/DSIT%20Logo.png" },
+    { name: "UNIBOTVERSE" },
+    { name: "ITC COMMUNICATIONS", logo: "/ITC%20Communication%20logo.png" },
+    { name: "ITC ENGINEERING", logo: "/ITC%20Engineering%20logo.png" },
+    { name: "MIACON FZE", logo: "/meaicon-LLC-FZ-logo-black.svg" },
+    { name: "MY BOLT MALAYSIA", logo: "/Mybolt%20malaysia.svg" },
+    { name: "UCI Education", logo: "/uci24-education-1l-blue-4-1.png" },
+    { name: "Rehman Foundation", logo: "/Rehman%20Foundation%20Health.png" },
+    {
+      name: "SARF International Hospital",
+      logo: "/SARF-LOGO-2-2048x775.jpeg",
+    },
   ],
 };
 

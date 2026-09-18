@@ -33,7 +33,12 @@ const prefersReducedMotion = () =>
 /** The brushed gold ring from the app's branding — unchanged. */
 function RingMark({ className }: { className?: string }) {
   return (
-    <svg viewBox="0 0 48 48" fill="none" aria-hidden="true" className={className}>
+    <svg
+      viewBox="0 0 48 48"
+      fill="none"
+      aria-hidden="true"
+      className={className}
+    >
       <defs>
         <linearGradient id="ac-ring" x1="0" y1="0" x2="1" y2="1">
           <stop offset="0%" stopColor="#e8c9a0" />
@@ -72,9 +77,18 @@ export function StoreButtons({ className }: { className?: string }) {
         className="border-line hover:border-accent/50 hover:bg-surface-2 group flex items-center gap-2.5 rounded-2xl border px-4 py-2.5 transition-colors"
       >
         <svg viewBox="0 0 24 24" className="h-6 w-6" aria-hidden="true">
-          <path d="M4 2.8v18.4c0 .5.5.9 1 .6l13.2-9.2c.4-.3.4-.9 0-1.2L5 2.2c-.5-.3-1 .1-1 .6Z" fill="#5ce07a" />
-          <path d="M4 2.8v18.4c0 .5.5.9 1 .6l7-9.8-7-9.8c-.5-.3-1 .1-1 .6Z" fill="#4ac3f0" />
-          <path d="M18.2 11.4 15 9.2l-2.4 3.4 2.4 3.4 3.2-2.2c.4-.3.4-.9 0-1.4Z" fill="#f5c14e" />
+          <path
+            d="M4 2.8v18.4c0 .5.5.9 1 .6l13.2-9.2c.4-.3.4-.9 0-1.2L5 2.2c-.5-.3-1 .1-1 .6Z"
+            fill="#5ce07a"
+          />
+          <path
+            d="M4 2.8v18.4c0 .5.5.9 1 .6l7-9.8-7-9.8c-.5-.3-1 .1-1 .6Z"
+            fill="#4ac3f0"
+          />
+          <path
+            d="M18.2 11.4 15 9.2l-2.4 3.4 2.4 3.4 3.2-2.2c.4-.3.4-.9 0-1.4Z"
+            fill="#f5c14e"
+          />
           <path d="M5 21.8 15 15l-2.4-2.4L5 21.8Z" fill="#f0674e" />
         </svg>
         <span className="text-left">
@@ -91,14 +105,21 @@ export function StoreButtons({ className }: { className?: string }) {
         href="#"
         className="border-line hover:border-accent/50 hover:bg-surface-2 group flex items-center gap-2.5 rounded-2xl border px-4 py-2.5 transition-colors"
       >
-        <svg viewBox="0 0 24 24" className="h-6 w-6" fill="currentColor" aria-hidden="true">
+        <svg
+          viewBox="0 0 24 24"
+          className="h-6 w-6"
+          fill="currentColor"
+          aria-hidden="true"
+        >
           <path d="M16.4 12.6c0-2.2 1.8-3.3 1.9-3.3-1-1.5-2.6-1.7-3.2-1.7-1.4-.1-2.7.8-3.4.8-.7 0-1.8-.8-2.9-.8-1.5 0-2.9.9-3.7 2.2-1.6 2.7-.4 6.7 1.1 8.9.8 1.1 1.6 2.3 2.8 2.2 1.1 0 1.5-.7 2.9-.7 1.3 0 1.7.7 2.9.7 1.2 0 2-1.1 2.7-2.1.9-1.2 1.2-2.4 1.2-2.4s-2.3-.9-2.3-3.8ZM14.3 5.9c.6-.8 1-1.8.9-2.9-.9 0-2 .6-2.7 1.4-.6.7-1.1 1.8-.9 2.8 1 .1 2-.5 2.7-1.3Z" />
         </svg>
         <span className="text-left">
           <span className="text-dim block text-[9px] tracking-wide uppercase">
             Download on the
           </span>
-          <span className="block text-sm font-medium text-white">App Store</span>
+          <span className="block text-sm font-medium text-white">
+            App Store
+          </span>
         </span>
       </a>
     </div>
@@ -148,7 +169,10 @@ export function PhoneMockup({
 
         <div
           style={{ height: screenHeight }}
-          className={cx("relative overflow-hidden rounded-[1.7rem] bg-white", paused && "shots-paused")}
+          className={cx(
+            "relative overflow-hidden rounded-[1.7rem] bg-white",
+            paused && "shots-paused",
+          )}
         >
           {appScreens.map((screen, i) => (
             <div
@@ -165,7 +189,7 @@ export function PhoneMockup({
                 fill
                 sizes={`${width}px`}
                 priority={i === 0}
-                className="object-cover"
+                className="object-contain"
               />
             </div>
           ))}

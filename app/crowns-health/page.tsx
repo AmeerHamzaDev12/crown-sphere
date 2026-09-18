@@ -200,68 +200,8 @@ export default function CrownsHealthPage() {
         </Container>
       </Section>
 
-      {/* ----------------------------------------------------------------- plans */}
-      <Section tone="cream">
-        <Container>
-          <Reveal>
-            <SectionHeading
-              tone="cream"
-              eyebrow={plans.eyebrow}
-              title={plans.heading}
-              intro={plans.intro}
-            />
-          </Reveal>
-
-          <ul className="mt-16 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-            {plans.items.map((plan, i) => (
-              <Reveal as="li" key={plan.name} delay={(i % 3) * 80}>
-                <div
-                  className={cx(
-                    "rounded-card flex h-full flex-col border p-7 sm:p-8",
-                    plan.featured
-                      ? "bg-ink border-ink text-white"
-                      : "border-ink/12 bg-cream",
-                  )}
-                >
-                  <h3 className="display text-xl font-semibold">{plan.name}</h3>
-                  <p className="display mt-5 text-3xl font-semibold">
-                    {plan.price}
-                  </p>
-                  <p
-                    className={cx(
-                      "mt-1.5 text-xs tracking-wide uppercase",
-                      plan.featured ? "text-dim" : "text-ink/45",
-                    )}
-                  >
-                    {plan.cadence}
-                  </p>
-                  <p
-                    className={cx(
-                      "mt-6 flex-1 text-sm leading-relaxed",
-                      plan.featured ? "text-mist" : "text-ink/70",
-                    )}
-                  >
-                    {plan.includes}
-                  </p>
-                  <p
-                    className={cx(
-                      "mt-6 border-t pt-5 text-xs leading-relaxed",
-                      plan.featured
-                        ? "border-line text-dim"
-                        : "border-ink/12 text-ink/55",
-                    )}
-                  >
-                    {plan.idealFor}
-                  </p>
-                </div>
-              </Reveal>
-            ))}
-          </ul>
-        </Container>
-      </Section>
-
       {/* --------------------------------------------------- orgs + providers */}
-      <Section>
+      <Section className="pt-0">
         <Container>
           <div className="grid gap-5 lg:grid-cols-2">
             <Reveal>

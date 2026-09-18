@@ -117,8 +117,9 @@ export default function TravelVisaPage() {
                   A hospitality partnership opportunity
                 </p>
                 <p className="text-ink/70 mt-4 text-sm leading-relaxed">
-                  The Misaari property is ready to host guests. CSPL is exploring
-                  an operational partnership for its management and development.
+                  The Misaari property is ready to host guests. CSPL is
+                  exploring an operational partnership for its management and
+                  development.
                 </p>
                 <div className="mt-8">
                   <CtaButton href="/opportunities#misaari" variant="light">
@@ -216,14 +217,20 @@ export default function TravelVisaPage() {
             <h3 className="display mt-5 text-[clamp(1.75rem,3.2vw,2.5rem)]">
               {whyBook.heading}
             </h3>
-            <ul className="border-line mt-12 grid gap-px border-t sm:grid-cols-2 xl:grid-cols-4">
+            <ul className="mt-12 grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
               {whyBook.items.map((item, i) => (
                 <Reveal
                   as="li"
                   key={item.title}
                   delay={(i % 4) * 80}
-                  className="outline-line bg-ink p-7 outline sm:p-8"
+                  className="group border-line/70 bg-ink relative rounded-2xl border border-dashed p-7 transition-colors duration-400 hover:border-accent/50 hover:border-solid sm:p-8"
                 >
+                  <span
+                    aria-hidden="true"
+                    className="border-line text-dim absolute -top-3 -right-3 flex h-9 w-9 rotate-6 items-center justify-center rounded-full border bg-ink text-[11px] font-medium transition-all duration-400 group-hover:rotate-0 group-hover:border-accent/50 group-hover:text-accent"
+                  >
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
                   <h4 className="text-lg font-medium text-white">
                     {item.title}
                   </h4>
