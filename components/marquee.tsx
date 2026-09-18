@@ -42,7 +42,7 @@ export function Marquee({
         // The band is a solid edge-to-edge strip, so it keeps its hard edges.
         tone === "band"
           ? "bg-royal py-4"
-          : "[mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]",
+          : "mask-[linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]",
         className,
       )}
     >
@@ -70,20 +70,20 @@ export function Marquee({
                     "flex h-11 w-11 shrink-0 items-center justify-center rounded-full border",
                     tone === "cream"
                       ? "border-royal/20 bg-royal/[0.07] text-royal"
-                      : "border-accent/25 bg-accent/[0.08] text-accent",
+                      : "border-accent/25 bg-accent/8 text-accent",
                   )}
                 >
                   <SectorIcon name={item} className="h-5 w-5" />
                 </span>
               ) : null}
               {typeof item === "string" || !item.logo ? null : (
-                <span className="flex h-11 w-28 shrink-0 items-center justify-center rounded-full border border-royal/15 bg-white/35 px-3">
+                <span className="flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-full border border-royal/15 bg-white/35 p-2">
                   <Image
                     src={item.logo}
                     alt=""
                     width={160}
                     height={56}
-                    className="max-h-8 w-auto max-w-full object-contain"
+                    className="h-full w-full object-contain"
                   />
                 </span>
               )}
